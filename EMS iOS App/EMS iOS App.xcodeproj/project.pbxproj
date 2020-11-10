@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		94E3B203255A3A200021FCAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B202255A3A200021FCAA /* AppDelegate.swift */; };
 		94E3B205255A3A200021FCAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B204255A3A200021FCAA /* SceneDelegate.swift */; };
-		94E3B207255A3A200021FCAA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B206255A3A200021FCAA /* ViewController.swift */; };
 		94E3B20A255A3A200021FCAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94E3B208255A3A200021FCAA /* Main.storyboard */; };
 		94E3B20C255A3A240021FCAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94E3B20B255A3A240021FCAA /* Assets.xcassets */; };
 		94E3B20F255A3A240021FCAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94E3B20D255A3A240021FCAA /* LaunchScreen.storyboard */; };
 		94E3B21A255A3A240021FCAA /* EMS_iOS_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B219255A3A240021FCAA /* EMS_iOS_AppTests.swift */; };
 		94E3B225255A3A240021FCAA /* EMS_iOS_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B224255A3A240021FCAA /* EMS_iOS_AppUITests.swift */; };
+		94E3B274255A3DF70021FCAA /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B273255A3DF70021FCAA /* HomeVC.swift */; };
+		94E3B277255A420F0021FCAA /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B276255A420F0021FCAA /* HomeTableViewCell.swift */; };
+		94E3B27C255A45860021FCAA /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B27B255A45860021FCAA /* Enums.swift */; };
+		94E3B27F255A551E0021FCAA /* HospitalIH.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B27E255A551E0021FCAA /* HospitalIH.swift */; };
+		94E3B281255A5A6A0021FCAA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E3B280255A5A6A0021FCAA /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +42,6 @@
 		94E3B1FF255A3A200021FCAA /* EMS iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EMS iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E3B202255A3A200021FCAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94E3B204255A3A200021FCAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		94E3B206255A3A200021FCAA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		94E3B209255A3A200021FCAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94E3B20B255A3A240021FCAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94E3B20E255A3A240021FCAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +52,11 @@
 		94E3B220255A3A240021FCAA /* EMS iOS AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EMS iOS AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E3B224255A3A240021FCAA /* EMS_iOS_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMS_iOS_AppUITests.swift; sourceTree = "<group>"; };
 		94E3B226255A3A240021FCAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94E3B273255A3DF70021FCAA /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		94E3B276255A420F0021FCAA /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		94E3B27B255A45860021FCAA /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		94E3B27E255A551E0021FCAA /* HospitalIH.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalIH.swift; sourceTree = "<group>"; };
+		94E3B280255A5A6A0021FCAA /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +109,11 @@
 			children = (
 				94E3B202255A3A200021FCAA /* AppDelegate.swift */,
 				94E3B204255A3A200021FCAA /* SceneDelegate.swift */,
-				94E3B206255A3A200021FCAA /* ViewController.swift */,
-				94E3B208255A3A200021FCAA /* Main.storyboard */,
-				94E3B20B255A3A240021FCAA /* Assets.xcassets */,
-				94E3B20D255A3A240021FCAA /* LaunchScreen.storyboard */,
 				94E3B210255A3A240021FCAA /* Info.plist */,
+				94E3B280255A5A6A0021FCAA /* Utils.swift */,
+				94E3B27B255A45860021FCAA /* Enums.swift */,
+				94E3B236255A3BD00021FCAA /* Business_Layer */,
+				94E3B232255A3B3E0021FCAA /* UI_Layer */,
 			);
 			path = "EMS iOS App";
 			sourceTree = "<group>";
@@ -126,6 +134,74 @@
 				94E3B226255A3A240021FCAA /* Info.plist */,
 			);
 			path = "EMS iOS AppUITests";
+			sourceTree = "<group>";
+		};
+		94E3B232255A3B3E0021FCAA /* UI_Layer */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B233255A3B6A0021FCAA /* VCs */,
+				94E3B234255A3B730021FCAA /* Storyboards */,
+				94E3B235255A3B7E0021FCAA /* Images */,
+				94E3B27A255A44D60021FCAA /* Views */,
+			);
+			path = UI_Layer;
+			sourceTree = "<group>";
+		};
+		94E3B233255A3B6A0021FCAA /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B275255A41EA0021FCAA /* Home */,
+			);
+			path = VCs;
+			sourceTree = "<group>";
+		};
+		94E3B234255A3B730021FCAA /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B208255A3A200021FCAA /* Main.storyboard */,
+				94E3B20D255A3A240021FCAA /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		94E3B235255A3B7E0021FCAA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B20B255A3A240021FCAA /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		94E3B236255A3BD00021FCAA /* Business_Layer */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B27D255A54F60021FCAA /* Information_Holders */,
+			);
+			path = Business_Layer;
+			sourceTree = "<group>";
+		};
+		94E3B275255A41EA0021FCAA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B273255A3DF70021FCAA /* HomeVC.swift */,
+				94E3B276255A420F0021FCAA /* HomeTableViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		94E3B27A255A44D60021FCAA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94E3B27D255A54F60021FCAA /* Information_Holders */ = {
+			isa = PBXGroup;
+			children = (
+				94E3B27E255A551E0021FCAA /* HospitalIH.swift */,
+			);
+			path = Information_Holders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,9 +335,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E3B207255A3A200021FCAA /* ViewController.swift in Sources */,
+				94E3B27F255A551E0021FCAA /* HospitalIH.swift in Sources */,
+				94E3B274255A3DF70021FCAA /* HomeVC.swift in Sources */,
 				94E3B203255A3A200021FCAA /* AppDelegate.swift in Sources */,
+				94E3B281255A5A6A0021FCAA /* Utils.swift in Sources */,
+				94E3B277255A420F0021FCAA /* HomeTableViewCell.swift in Sources */,
 				94E3B205255A3A200021FCAA /* SceneDelegate.swift in Sources */,
+				94E3B27C255A45860021FCAA /* Enums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
