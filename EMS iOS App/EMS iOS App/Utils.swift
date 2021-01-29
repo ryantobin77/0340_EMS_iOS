@@ -32,11 +32,13 @@ extension NedocsScore {
         var color: UIColor!
         switch self {
         case .severe:
-            color = UIColor(rgb: 0xff0000)
+            color = UIColor(rgb: 0xD32F2F)
         case .busy:
-            color = UIColor(rgb: 0xffc000)
+            color = UIColor(rgb: 0xFDD835)
+        case .overcrowded:
+            color = UIColor(rgb: 0xF9A825)
         case .normal:
-            color = UIColor(rgb: 0x70ad47)
+            color = UIColor(rgb: 0x4CAF50)
         }
         return color
     }

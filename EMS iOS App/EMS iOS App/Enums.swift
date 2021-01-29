@@ -10,8 +10,9 @@ import Foundation
 
 enum NedocsScore: String {
     case severe = "Severe"
-    case normal = "Normal"
+    case overcrowded = "Overcrowded"
     case busy = "Busy"
+    case normal = "Normal"
 }
 
 enum HospitalType {
