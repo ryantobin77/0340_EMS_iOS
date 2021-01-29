@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EMS_Android_App</string>
+
+    <!--nedocs score-->
+    <string name="normal">Normal</string>
+    <string name="busy">Busy</string>
+    <string name="overcrowded">Overcrowded</string>
+    <string name="severe">Severe</string>
 </resources>
