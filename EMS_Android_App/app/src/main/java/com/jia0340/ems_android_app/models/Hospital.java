@@ -12,6 +12,7 @@ public class Hospital {
     private HospitalType hospitalType;
     private float distance;
     private boolean hasDiversion;
+    private boolean mExpanded = false;
 
     public Hospital(String name, NedocsScore nedocsScore, HospitalType hospitalType, float distance,
                     boolean hasDiversion) {
@@ -20,5 +21,17 @@ public class Hospital {
         this.hospitalType = hospitalType;
         this.distance = distance;
         this.hasDiversion = hasDiversion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isExpanded() {
+        return mExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        mExpanded = expanded;
     }
 }
