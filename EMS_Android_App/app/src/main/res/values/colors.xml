@@ -16,4 +16,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--nedocs score-->
+    <color name="normal">#4CAF50</color>
+    <color name="busy">#FDD835</color>
+    <color name="overcrowded">#F9A825</color>
+    <color name="severe">#D32F2F</color>
 </resources>

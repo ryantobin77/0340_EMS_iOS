@@ -10,11 +10,11 @@ public class Hospital {
     private String name;
     private NedocsScore nedocsScore;
     private HospitalType hospitalType;
-    private float distance;
+    private double distance;
     private boolean hasDiversion;
     private boolean mExpanded = false;
 
-    public Hospital(String name, NedocsScore nedocsScore, HospitalType hospitalType, float distance,
+    public Hospital(String name, NedocsScore nedocsScore, HospitalType hospitalType, double distance,
                     boolean hasDiversion) {
         this.name = name;
         this.nedocsScore = nedocsScore;
