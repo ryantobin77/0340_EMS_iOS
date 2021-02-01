@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/hospitalCardHolder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -52,14 +53,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!--TODO: Don't hardcode hospital name-->
                 <!--TODO: Fix weird spacing between pin and hospital name-->
                 <TextView
                     android:id="@+id/hospitalName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="Placeholder Hospital Name"
+                    android:text="@string/hospital_name_placeholder"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -75,37 +75,43 @@
 
                 <ImageView
                     android:id="@+id/favoriteView"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:contentDescription="@string/favoritePin"
+                    android:maxWidth="18dp"
+                    android:maxHeight="18dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/favorite_pin"
                     app:layout_constraintBottom_toBottomOf="@id/nedocsView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintStart_toEndOf="@id/hospitalName"
                     app:layout_constraintTop_toTopOf="@id/nedocsView"
                     app:layout_constraintVertical_bias="0.01"
-                    app:srcCompat="@drawable/outlinedFavoritePin" />
+                    app:srcCompat="@drawable/outlined_favorite_pin" />
 
                 <ImageView
                     android:id="@+id/mapPinView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/mapPin"
+                    android:contentDescription="@string/map_pin"
+                    android:layout_marginEnd="20dp"
+                    android:maxWidth="25dp"
+                    android:maxHeight="25dp"
+                    android:adjustViewBounds="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.8"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@id/favoriteView"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.4"
-                    app:srcCompat="@drawable/mapPin" />
+                    app:srcCompat="@drawable/map_pin" />
 
-                <!--TODO: Don't hardcode distance-->
                 <TextView
                     android:id="@+id/distanceLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.2 mi"
+                    android:text="@string/distance_label_placeholder"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -113,6 +119,89 @@
                     app:layout_constraintStart_toStartOf="@id/mapPinView"
                     app:layout_constraintTop_toBottomOf="@id/mapPinView"
                     app:layout_constraintVertical_bias="0.01"/>
+
+                <ImageView
+                    android:id="@+id/diversionView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/warning_icon"
+                    android:maxWidth="25dp"
+                    android:maxHeight="25dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/hospitalName"
+                    app:layout_constraintTop_toBottomOf="@id/hospitalName"
+                    app:layout_constraintVertical_bias="0.05"
+                    app:srcCompat="@drawable/warning_icon"
+                    tools:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/hospitalTypeIconHolder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/diversionView"
+                    app:layout_constraintTop_toBottomOf="@id/hospitalName"
+                    app:layout_constraintVertical_bias="0.05" >
+
+                    <ImageView
+                        android:id="@+id/hospitalType1View"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/person_icon"
+                        android:maxWidth="25dp"
+                        android:maxHeight="25dp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="parent"
+                        app:srcCompat="@drawable/person" />
+
+                    <ImageView
+                        android:id="@+id/hospitalType2View"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/heart_icon"
+                        android:maxWidth="25dp"
+                        android:maxHeight="25dp"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="@id/hospitalType1View"
+                        app:layout_constraintTop_toBottomOf="parent"
+                        app:srcCompat="@drawable/heart" />
+
+                    <ImageView
+                        android:id="@+id/hospitalType3View"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/brain_icon"
+                        android:maxWidth="25dp"
+                        android:maxHeight="25dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="@id/hospitalType2View"
+                        app:layout_constraintTop_toBottomOf="parent"
+                        app:srcCompat="@drawable/brain" />
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
