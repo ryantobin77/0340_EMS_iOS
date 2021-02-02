@@ -13,6 +13,7 @@ public class Hospital {
     private double distance;
     private boolean hasDiversion;
     private boolean mExpanded = false;
+    private boolean mFavorite = false;
 
     public Hospital(String name, NedocsScore nedocsScore, HospitalType hospitalType, double distance,
                     boolean hasDiversion) {
@@ -27,11 +28,27 @@ public class Hospital {
         return name;
     }
 
+    public NedocsScore getNedocsScore() {
+        return nedocsScore;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
     public boolean isExpanded() {
         return mExpanded;
     }
 
     public void setExpanded(boolean expanded) {
         mExpanded = expanded;
+    }
+
+    public boolean isFavorite() {
+        return mFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        mFavorite = favorite;
     }
 }

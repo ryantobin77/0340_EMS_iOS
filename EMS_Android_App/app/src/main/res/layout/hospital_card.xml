@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/hospitalCard"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/hospitalCardContentHolder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fixedHospitalCard"
@@ -73,7 +73,7 @@
                     app:layout_constraintWidth_default="wrap" />
 
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/favoriteView"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
@@ -85,7 +85,7 @@
                     app:layout_constraintStart_toEndOf="@id/hospitalName"
                     app:layout_constraintTop_toTopOf="@id/nedocsView"
                     app:layout_constraintVertical_bias="0.01"
-                    app:srcCompat="@drawable/outlinedFavoritePin" />
+                    app:srcCompat="@drawable/outlined_favorite_pin" />
 
                 <ImageView
                     android:id="@+id/mapPinView"
@@ -98,7 +98,7 @@
                     app:layout_constraintStart_toEndOf="@id/favoriteView"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.4"
-                    app:srcCompat="@drawable/mapPin" />
+                    app:srcCompat="@drawable/map_pin" />
 
                 <!--TODO: Don't hardcode distance-->
                 <TextView
