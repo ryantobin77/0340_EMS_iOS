@@ -316,17 +316,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="EMS" id="Rzh-Mw-DlK">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Item" image="FilterIcon" id="Dxi-bj-uGe">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="PhoneIconWhite" id="gsh-ru-Jvb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="SearchIcon" id="6KB-Dl-i7k">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </barButtonItem>
                             <barButtonItem title="Item" image="SortIcon" id="gCZ-fT-dKn">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </barButtonItem>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="SearchIcon" id="gsh-ru-Jvb">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
+                            <barButtonItem title="Item" image="FilterIcon" id="Dxi-bj-uGe">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="5Kd-TW-JX4" id="oZC-Uj-MUF"/>
@@ -341,12 +344,13 @@
         <image name="AddressIcon" width="20" height="20"/>
         <image name="ArrowIcon" width="249" height="256"/>
         <image name="BrainIcon" width="25" height="25"/>
-        <image name="FilterIcon" width="25" height="25"/>
+        <image name="FilterIcon" width="24" height="24"/>
         <image name="MapPin" width="32" height="32"/>
         <image name="OutlineFavoritePin" width="18" height="18"/>
         <image name="PhoneIcon" width="20" height="20"/>
-        <image name="SearchIcon" width="25" height="25"/>
-        <image name="SortIcon" width="25" height="25"/>
+        <image name="PhoneIconWhite" width="24" height="24"/>
+        <image name="SearchIcon" width="24" height="24"/>
+        <image name="SortIcon" width="24" height="24"/>
         <image name="WarningIcon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
