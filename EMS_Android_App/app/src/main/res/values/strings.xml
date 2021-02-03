@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EMS_Android_App</string>
+    <string name="app_name">EMS</string>
 
     <!--nedocs score-->
     <string name="normal">Normal</string>
