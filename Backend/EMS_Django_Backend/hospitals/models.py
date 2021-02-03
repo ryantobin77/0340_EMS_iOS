@@ -38,4 +38,4 @@ class Hospital(models.Model):
     # The status of the hospital. To be updated by the scraper
     last_updated = models.DateTimeField(null=True)
     nedocs_score = models.CharField(null=True, choices=constants.NEDOCS_CHOICES, default=constants.NORMAL, max_length=100)
-    diversions = models.ManyToManyField(Diversion)
+    diversions = models.ManyToManyField(Diversion, blank=True)
