@@ -24,6 +24,7 @@ The EMS Mobile App is a mobile application that allows EMTs to better find a hos
 ### Setting up the Android App
 
 
+
 ## Running the App
 
 ### Running the backend
@@ -34,10 +35,11 @@ python manage.py runserver
 ```
 #### Adding data to the backend
 1. Navigate to http://127.0.0.1:8000/admin/ in your browser
-2. Create a Specialty Center
-3. Optionally Create a Diversion
-4. Create a Hospital
-5. Navigate to http://127.0.0.1:8000/hospitals/ in your browser to see you data in a Json format
+2. Login to the admin page with your superuser credentials
+3. Create a Specialty Center
+4. Optionally Create a Diversion
+5. Create a Hospital
+6. Navigate to http://127.0.0.1:8000/hospitals/ in your browser to see your data in a Json format
 
 ### Running the iOS App
 1. Make sure the backend is running
