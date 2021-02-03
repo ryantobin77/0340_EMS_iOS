@@ -6,20 +6,26 @@
     tools:context=".MainActivity">
 
     <item
+        android:id="@+id/action_call"
+        android:title="Call"
+        android:icon="@drawable/phone_icon"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_filter"
         android:title="Filter"
         android:icon="@drawable/filter_icon"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_sort"
         android:title="Sort"
         android:icon="@drawable/sort_icon"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_search"
         android:title="Search"
         android:icon="@drawable/search_icon"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 </menu>

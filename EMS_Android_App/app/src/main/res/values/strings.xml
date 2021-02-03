@@ -7,10 +7,19 @@
     <string name="overcrowded">Overcrowded</string>
     <string name="severe">Severe</string>
 
+    <!--hospital types-->
+    <string name="adult_trauma_center">Adult Trauma Center - Level 1</string>
+    <string name="heart">Emergency Cardiac Care Center - Level 1 ECCC</string>
+    <string name="brain">Comprehensive Stroke Center</string>
+
+    <!--misc. labels-->
+    <string name="distance">%.2f mi</string>
+
     <!--image accessibility text-->
     <string name="favorite_pin">pin to favorites</string>
     <string name="map_pin">map pin</string>
     <string name="warning_icon">diversion</string>
+    <!--TODO: for these images, should the accessibility text only say "Type 1 Icon" etc. so we don't have to adjust when we update the icons?-->
     <string name="person_icon">adult trauma center</string>
     <string name="child_icon">child trauma center</string>
     <string name="brain_icon">stroke center</string>
@@ -25,17 +34,4 @@
     <!--utility-->
     <string name="hyphen">-</string>
 
-    <!--TODO: Get rid of placeholders-->
-    <string name="hospital_name_placeholder">Placeholder Hospital Name</string>
-    <string name="distance_label_placeholder">0.0 mi</string>
-    <string name="phone_number_placeholder">(000) 000-0000</string>
-    <string name="address_placeholder">
-        80 Jesse Hill Jr Dr SE
-        <br>Atlanta, GA 30303</br>
-    </string>
-    <string name="diversion_placeholder">Medical Diversion</string>
-    <string name="hospital_type_placeholder">Adult Trauma Center - Level 1</string>
-    <string name="county_placeholder">Fulton County</string>
-    <string name="ems_region_placeholder">EMS Region 3</string>
-    <string name="regional_coordinating_hospital_placeholder">Regional Coordinating Hospital A</string>
 </resources>

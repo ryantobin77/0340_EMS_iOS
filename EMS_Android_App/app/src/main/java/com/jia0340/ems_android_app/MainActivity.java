@@ -44,18 +44,61 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         hospitalRecyclerView.addItemDecoration(itemDecoration);
 
+        //TODO: remove dummy data
+
+        ArrayList<HospitalType> gradyTypes = new ArrayList<>();
+        gradyTypes.add(HospitalType.ADULT_TRAUMA_CENTER);
+        gradyTypes.add(HospitalType.BRAIN);
+
+        ArrayList<String> gradyDiversions = new ArrayList<>();
+        gradyDiversions.add("Medical Diversion");
+        gradyDiversions.add("Psych Diversion");
+
         mHospitalList = new ArrayList<>();
 
-        mHospitalList.add(new Hospital("this is a fun hospital", NedocsScore.NORMAL, HospitalType.ADULT_TRAUMA_CENTER, 1.98, false));
-        mHospitalList.add(new Hospital("this is a lame hospital", NedocsScore.OVERCROWDED, HospitalType.ADULT_TRAUMA_CENTER, 2.8, false));
-        mHospitalList.add(new Hospital("this hospital has a really freaking long hospital name for no apparent reason what the heck", NedocsScore.BUSY, HospitalType.ADULT_TRAUMA_CENTER, 21.76, false));
-        mHospitalList.add(new Hospital("lol short", NedocsScore.SEVERE, HospitalType.ADULT_TRAUMA_CENTER, 1.9, false));
-        mHospitalList.add(new Hospital("short", NedocsScore.BUSY, HospitalType.ADULT_TRAUMA_CENTER, 1.2, false));
-        mHospitalList.add(new Hospital("hello world!!!!", NedocsScore.OVERCROWDED, HospitalType.ADULT_TRAUMA_CENTER, 4.5, false));
-        mHospitalList.add(new Hospital("Grady hospital", NedocsScore.NORMAL, HospitalType.ADULT_TRAUMA_CENTER, 3.9, false));
-        mHospitalList.add(new Hospital("Hospital", NedocsScore.SEVERE, HospitalType.ADULT_TRAUMA_CENTER, 28.4, false));
-        mHospitalList.add(new Hospital("I need to go to THIS hospital", NedocsScore.BUSY, HospitalType.ADULT_TRAUMA_CENTER, 81.4, false));
-        mHospitalList.add(new Hospital("Just kidding", NedocsScore.NORMAL, HospitalType.ADULT_TRAUMA_CENTER, 61, false));
+        mHospitalList.add(new Hospital("Grady Health System", NedocsScore.SEVERE,
+                gradyTypes, "(404) 616-6440", "80 Jesse Hill Jr Dr SE, Atlanta, GA 30303",
+                "Fulton", "EMS Region 3", "Regional Coordinating Hospital D", 1.98,
+                true, gradyDiversions));
+
+        ArrayList<String> dodgeDiversions = new ArrayList<>();
+        dodgeDiversions.add("ICU/CCU Diversion");
+
+        mHospitalList.add(new Hospital("Dodge County Hospital", NedocsScore.NORMAL, null,
+                "(478) 448-4000", "901 Griffin Ave, Eastman, GA 31023",
+                "Dodge", "EMS Region 5", "Regional Coordinating Hospital H", 2.8, true, dodgeDiversions));
+
+        ArrayList<HospitalType> redmondTypes = new ArrayList<>();
+        redmondTypes.add(HospitalType.HEART);
+
+        mHospitalList.add(new Hospital("Redmond Regional Medical Ctr",
+                NedocsScore.SEVERE, redmondTypes, "(706) 291-0291",
+                "501 Redmond Rd, Rome, GA 30165", "Floyd",
+                "EMS Region 1", "Regional Coordinating Hospital C",
+                21.76, false, null));
+
+        ArrayList<HospitalType> upsonTypes = new ArrayList<>();
+        upsonTypes.add(HospitalType.BRAIN);
+        upsonTypes.add(HospitalType.HEART);
+
+        mHospitalList.add(new Hospital("Upson Regional Medical Center", NedocsScore.BUSY, upsonTypes,
+                "(706) 647-8111", "801 W Gordon St, Thomaston, GA 30286", "Upson", "EMS Region 4",
+                "Regional Coordinating Hospital F",1.9, false, null));
+
+        ArrayList<HospitalType> piedmontTypes = new ArrayList<>();
+        piedmontTypes.add(HospitalType.BRAIN);
+        piedmontTypes.add(HospitalType.HEART);
+        piedmontTypes.add(HospitalType.ADULT_TRAUMA_CENTER);
+
+        ArrayList<String> piedmontDiversions = new ArrayList<>();
+        piedmontDiversions.add("ER Saturation");
+        piedmontDiversions.add("ICU/CCU Diversion");
+        piedmontDiversions.add("Psych Diversion");
+
+        mHospitalList.add(new Hospital("Piedmont - Atlanta Hospital", NedocsScore.OVERCROWDED, piedmontTypes,
+                "(404) 605-5000", "1968 Peachtree Rd NW, Atlanta, GA 30309", "Fulton",
+                "EMS Region 3", "Regional Coordinating Hospital D",
+                1.2, true, piedmontDiversions));
 
         mHospitalAdapter = new HospitalListAdapter(mHospitalList, this);
         hospitalRecyclerView.setAdapter(mHospitalAdapter);
@@ -69,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //TODO: logic for menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
