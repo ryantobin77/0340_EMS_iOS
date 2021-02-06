@@ -1,3 +1,37 @@
 <resources>
-    <string name="app_name">EMS_Android_App</string>
+    <string name="app_name">EMS</string>
+
+    <!--nedocs score-->
+    <string name="normal">Normal</string>
+    <string name="busy">Busy</string>
+    <string name="overcrowded">Overcrowded</string>
+    <string name="severe">Severe</string>
+
+    <!--hospital types-->
+    <string name="adult_trauma_center">Adult Trauma Center - Level 1</string>
+    <string name="heart">Emergency Cardiac Care Center - Level 1 ECCC</string>
+    <string name="brain">Comprehensive Stroke Center</string>
+
+    <!--misc. labels-->
+    <string name="distance">%.2f mi</string>
+
+    <!--image accessibility text-->
+    <string name="favorite_pin">pin to favorites</string>
+    <string name="map_pin">map pin</string>
+    <string name="warning_icon">diversion</string>
+    <!--TODO: for these images, should the accessibility text only say "Type 1 Icon" etc. so we don't have to adjust when we update the icons?-->
+    <string name="person_icon">adult trauma center</string>
+    <string name="child_icon">child trauma center</string>
+    <string name="brain_icon">stroke center</string>
+    <string name="heart_icon">emergency cardiac care center</string>
+    <string name="baby_icon">neonatal center designation</string>
+    <string name="pregnant_woman_icon">maternal center designation</string>
+    <string name="phone_icon">phone</string>
+    <string name="map_icon">address</string>
+    <string name="expand_icon">expand</string>
+    <string name="collapse_icon">collapse</string>
+
+    <!--utility-->
+    <string name="hyphen">-</string>
+
 </resources>
