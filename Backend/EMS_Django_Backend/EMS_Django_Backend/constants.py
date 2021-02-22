@@ -1,10 +1,12 @@
 # Define any constants here
 
-SEVERE = 'Severe'
 NORMAL = 'Normal'
 BUSY = 'Busy'
+OVERCROWDED = 'Overcrowded'
+SEVERE = 'Severe'
 NEDOCS_CHOICES = (
-    (SEVERE, 'Severe'),
     (NORMAL, 'Normal'),
     (BUSY, 'Busy'),
+    (OVERCROWDED, 'Overcrowded'),
+    (SEVERE, 'Severe'),
 )
