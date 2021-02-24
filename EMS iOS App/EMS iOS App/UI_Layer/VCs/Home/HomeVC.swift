@@ -12,13 +12,30 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
     
     @IBOutlet var tableView: UITableView!
     var hospitals: Array<HospitalIH>!
+    var favoritePinTapped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        self.hospitals = Array<HospitalIH>()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.getHospitals()
+        let tasker = HospitalsTasker()
+        tasker.getAllHospitals(failure: {
+            print("Failure")
+        }, success: { (hospitals) in
+            guard let hospitals = hospitals else {
+                self.hospitals = Array<HospitalIH>()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                return
+            }
+            self.hospitals = hospitals
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,15 +74,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.hospitalTypeIcon.image = hospital.hospitalType.getHospitalIcon()
         cell.hospitalTypeIcon2.image = hospital.hospitalType.getHospitalIcon()
         cell.distanceLabel.text = "\(String(hospital.distance)) mi"
-        //cell.address?.text = hospital.address
         cell.address.attributedText = NSAttributedString(string: hospital.address, attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
         cell.address.textColor = UIColor.blue
-        //cell.phoneNumber?.text = hospital.phoneNumber
         cell.phoneNumber.attributedText = NSAttributedString(string: hospital.phoneNumber, attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
         cell.phoneNumber.textColor = UIColor.blue
-        cell.countyLabel.text = "\(String(hospital.county)) County - EMS Region \(String(hospital.regionNumber))"
+        cell.countyLabel.text = "\(String(hospital.county)) - EMS Region \(String(hospital.regionNumber))"
         cell.rchLabel.text = "Regional Coordination Hospital \(String(hospital.rch))"
     
         return cell
@@ -85,7 +100,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
     }
     
     @IBAction func expandButton(_ sender: UIButton) {
-        print("button clicked")
         guard let cell = sender.superview?.superview as? HomeTableViewCell else {
             return
         }
@@ -103,26 +117,20 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             self.selectedRowIndex = indexPath.row
             let image = UIImage(named:"ArrowIconUp")
             cell.expandButton.setImage(image, for: .normal)
-        }
-        else {
+        } else {
             // there is no cell selected anymore
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
             let image = UIImage(named:"ArrowIcon")
             cell.expandButton.setImage(image, for: .normal)
-            
-            
-        //cell.expandButton.origin.x
         }
-        print(cell.expandButton.frame.origin.y)
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
         
     }
-    var favoritePinTapped = false
+    
     
     @IBAction func favoritePin(_ sender: UIButton) {
-        print("fav button clicked")
         guard let cell = sender.superview?.superview as? HomeTableViewCell else {
             return
         }
@@ -136,22 +144,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.favoritePin.setImage(myImage, for: .normal)
             self.favoritePinTapped = false
         }
-    }
-    
-    
-    
-    func getHospitals() {
-        hospitals = Array<HospitalIH>()
-        hospitals.append(HospitalIH(name: "Grady Health System", nedocsScore: .severe, hospitalType: .adultTraumaCenter, distance: 0.5, hasDiversion: true, address: "80 Jesse Hill Jr Dr SE, Atlanta, GA 30303", phoneNumber: "4046161000", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "WellStar - South", nedocsScore: .normal, hospitalType: .heart, distance: 1.1, hasDiversion: false, address: "Test Address", phoneNumber: "234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Emory - University Hospital", nedocsScore: .busy, hospitalType: .brain, distance: 1.3, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Dekalb", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 4", nedocsScore: .busy, hospitalType: .brain, distance: 1.5, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 1, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 5", nedocsScore: .normal, hospitalType: .heart, distance: 1.6, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 6", nedocsScore: .normal, hospitalType: .heart, distance: 2.0, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 7", nedocsScore: .severe, hospitalType: .brain, distance: 3.5, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 8", nedocsScore: .busy, hospitalType: .brain, distance: 5.7, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 9", nedocsScore: .severe, hospitalType: .brain, distance: 7.9, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 10", nedocsScore: .severe, hospitalType: .adultTraumaCenter, distance: 10.5, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
     }
     
 }
