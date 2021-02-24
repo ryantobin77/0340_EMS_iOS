@@ -72,23 +72,33 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
 
         Hospital hospital = mHospitalList.get(position);
 
+//        calculateDistance(hospital);
+
         holder.mHospitalName.setText(hospital.getName());
-        holder.mDistanceLabel.setText(mContext.getString(R.string.distance, hospital.getmDistance()));
+        holder.mDistanceLabel.setText(mContext.getString(R.string.distance, hospital.getDistance()));
         holder.mPhoneNumber.setText(hospital.getPhoneNumber());
-        //TODO: will need to format addresses for newlines etc.
-        holder.mAddressView.setText(hospital.getAddress());
-        holder.mCountyRegionText.setText(hospital.getCounty() + " - " +hospital.getRegion());
+        holder.mAddressView.setText(mContext.getString(R.string.address, hospital.getStreetAddress(),
+                                            hospital.getCity(), hospital.getState(), hospital.getZipCode()));
+        holder.mCountyRegionText.setText(mContext.getString(R.string.county_region, hospital.getCounty(), hospital.getRegion()));
         holder.mRegionalCoordinatingText.setText(hospital.getRegionalCoordinatingHospital());
 
-        handleNedocsValues(holder, hospital.getmNedocsScore());
+        handleNedocsValues(holder, hospital.getNedocsScore());
 
-        handleDiversions(holder, hospital.hasDiversions(), hospital.getDiversions());
+        handleDiversions(holder, hospital.getDiversions());
 
         handleHospitalTypes(holder, hospital.getHospitalTypes());
 
         handleFavoritePin(holder, hospital);
 
         handleExpandCollapse(holder, hospital, position);
+    }
+
+    /**
+     * Placeholder method to calculate distance to hospital
+     * @param hospital current hospital
+     */
+    private void calculateDistance(Hospital hospital) {
+        hospital.setDistance(1.23);
     }
 
     /**
@@ -101,33 +111,32 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         return mHospitalList.size();
     }
 
+    /**
+     * Handles the UI for the nedocs score
+     * Sets the text and background color based on enum value
+     * @param holder View for the specific hospital
+     * @param score Nedocs score for the hospital
+     */
     public void handleNedocsValues(ViewHolder holder, NedocsScore score) {
-        switch (score) {
-            case NORMAL:
-                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.normal, null));
-                holder.mNedocsLabel.setText(mContext.getString(R.string.normal));
-                break;
-            case BUSY:
-                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.busy, null));
-                holder.mNedocsLabel.setText(mContext.getString(R.string.busy));
-                break;
-            case OVERCROWDED:
-                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.overcrowded, null));
-                holder.mNedocsLabel.setText(mContext.getString(R.string.overcrowded));
-                holder.mNedocsLabel.setTextSize(12);
-                break;
-            case SEVERE:
-                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.severe, null));
-                holder.mNedocsLabel.setText(mContext.getString(R.string.severe));
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + score);
+
+        holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), score.getColor(), null));
+        holder.mNedocsLabel.setText(mContext.getString(score.getLabel()));
+
+        if (score.equals(NedocsScore.OVERCROWDED)) {
+            holder.mNedocsLabel.setTextSize(12);
         }
+
     }
 
-    public void handleDiversions(ViewHolder holder, boolean hasDiversions, ArrayList<String> diversions) {
+    /**
+     * Handles the UI for the diversions
+     * Displays the diversion icon if needed and adds a description to the expanded view
+     * @param holder View for the specific hospital
+     * @param diversions List of diversions for the hospital
+     */
+    public void handleDiversions(ViewHolder holder, ArrayList<String> diversions) {
 
-        if (hasDiversions) {
+        if (diversions.size() > 0) {
             if (diversions != null && diversions.size() > 0) {
                 // set visibility of icon within collapsed/expanded views
                 holder.mDiversionView.setVisibility(View.VISIBLE);
@@ -152,6 +161,12 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
 
     }
 
+    /**
+     * Displays icons and descriptions for hospital types
+     * Handles up to 3 hospital types
+     * @param holder View for the specific hospital
+     * @param hospitalTypes List of hospital types for a hospital
+     */
     public void handleHospitalTypes(ViewHolder holder, ArrayList<HospitalType> hospitalTypes) {
 
         holder.mHospitalTypeOneImage.setVisibility(View.GONE);
@@ -212,6 +227,14 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         }
     }
 
+    /**
+     * Updates the pin icon
+     * Displays the filled in pin if the hospital is a favorite
+     * Displays the pin outline if it is not
+     * Also instantiates an onClickListener for the pin that will update the UI
+     * @param holder View for the specific hospital
+     * @param hospital Object for current hospital
+     */
     public void handleFavoritePin(ViewHolder holder, Hospital hospital) {
         if (hospital.isFavorite())
             holder.mFavoriteView.setImageDrawable(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.filled_favorite_pin, null));
@@ -232,6 +255,13 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         });
     }
 
+    /**
+     * Updates the expand/collapse view by changing visibility of views
+     * Set onClickListeners for the expand/collapse buttons to handle UI changes
+     * @param holder
+     * @param hospital
+     * @param position
+     */
     public void handleExpandCollapse(ViewHolder holder, Hospital hospital, int position) {
         holder.mExpandButton.setVisibility(hospital.isExpanded() ? View.GONE : View.VISIBLE);
         holder.mExpandedHospitalCard.setVisibility(hospital.isExpanded() ? View.VISIBLE : View.GONE);

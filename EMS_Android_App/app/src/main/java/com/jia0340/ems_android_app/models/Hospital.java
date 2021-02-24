@@ -1,5 +1,8 @@
 package com.jia0340.ems_android_app.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -9,46 +12,67 @@ import java.util.ArrayList;
  * Created on 1/24/21
  */
 public class Hospital {
+
     private String mName;
     private NedocsScore mNedocsScore;
     private ArrayList<HospitalType> mHospitalTypes;
-    private boolean mHasDiversion;
     private ArrayList<String> mDiversions;
     private String mPhoneNumber;
-    private String mAddress;
+    private String mStreetAddress;
+    private String mCity;
+    private String mState;
+    private String mZipCode;
     private String mCounty;
     private String mRegion;
     private String mRegionalCoordinatingHospital;
+    private String mLastUpdated;
+
     private double mDistance;
     private boolean mExpanded = false;
     private boolean mFavorite = false;
 
     //TODO: figure out naming conventions
-    public Hospital(String name, NedocsScore nedocsScore, ArrayList<HospitalType> hospitalTypes, String phoneNumber,
-                    String address, String county, String region, String regionalCoordinatingHospital,
-                    double distance, boolean hasDiversion, ArrayList<String> diversions) {
+    @JsonCreator
+    public Hospital(@JsonProperty("name") String name,
+                    @JsonProperty("nedocs_score") NedocsScore nedocsScore,
+                    @JsonProperty("specialty_centers") ArrayList<HospitalType> hospitalTypes,
+                    @JsonProperty("phone") String phoneNumber,
+                    @JsonProperty("street") String street,
+                    @JsonProperty("city") String city,
+                    @JsonProperty("state") String state,
+                    @JsonProperty("zip") String zip,
+                    @JsonProperty("ems_region") String region,
+                    @JsonProperty("rch") String regionalCoordinatingHospital,
+                    @JsonProperty("diversions") ArrayList<String> diversions,
+                    @JsonProperty("last_updated") String lastUpdated) {
+
         mName = name;
         mNedocsScore = nedocsScore;
         mHospitalTypes = hospitalTypes;
         mPhoneNumber = phoneNumber;
-        mAddress = address;
-        mCounty = county;
+        mStreetAddress = street;
+        mCity = city;
+        mState = state;
+        mZipCode = zip;
+        mCounty = "TODO: still need county";
         mRegion = region;
         mRegionalCoordinatingHospital = regionalCoordinatingHospital;
-        mDistance = distance;
-        mHasDiversion = hasDiversion;
         mDiversions = diversions;
+        mLastUpdated = lastUpdated;
+
+        mDistance = 4.56;
+
     }
 
     public String getName() {
         return mName;
     }
 
-    public NedocsScore getmNedocsScore() {
+    public NedocsScore getNedocsScore() {
         return mNedocsScore;
     }
 
-    public double getmDistance() {
+    public double getDistance() {
         return mDistance;
     }
 
@@ -56,8 +80,20 @@ public class Hospital {
         return mPhoneNumber;
     }
 
-    public String getAddress() {
-        return mAddress;
+    public String getStreetAddress() {
+        return mStreetAddress;
+    }
+
+    public String getCity() {
+        return mCity;
+    }
+
+    public String getState() {
+        return mState;
+    }
+
+    public String getZipCode() {
+        return mZipCode;
     }
 
     public String getCounty() {
@@ -74,10 +110,6 @@ public class Hospital {
 
     public ArrayList<HospitalType> getHospitalTypes() {
         return mHospitalTypes;
-    }
-
-    public boolean hasDiversions() {
-        return mHasDiversion;
     }
 
     public ArrayList<String> getDiversions() {
@@ -98,5 +130,9 @@ public class Hospital {
 
     public void setFavorite(boolean favorite) {
         mFavorite = favorite;
+    }
+
+    public void setDistance(double distance) {
+        mDistance = distance;
     }
 }
