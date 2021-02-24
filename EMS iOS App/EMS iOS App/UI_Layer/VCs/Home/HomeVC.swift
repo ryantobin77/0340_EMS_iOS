@@ -80,11 +80,15 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.expandedDiversionIcon?.image = nil
             cell.expandedDiversionIconLabel.text = ""
         }
-        cell.hospitalTypeIcon2Label.text = hospital.hospitalType.map { $0.rawValue }
-        
-        
-        cell.hospitalTypeIcon.image = hospital.hospitalType.getHospitalIcon()
-        cell.hospitalTypeIcon2.image = hospital.hospitalType.getHospitalIcon()
+        if hospital.specialtyCenters.count > 0 {
+            cell.hospitalTypeIcon2Label.text = hospital.specialtyCenters[0].rawValue
+            cell.hospitalTypeIcon.image = hospital.specialtyCenters[0].getHospitalIcon()
+            cell.hospitalTypeIcon2.image = hospital.specialtyCenters[0].getHospitalIcon()
+        } else {
+            cell.hospitalTypeIcon2Label.text = ""
+            cell.hospitalTypeIcon.isHidden = true
+            cell.hospitalTypeIcon2.isHidden = true
+        }
         cell.distanceLabel.text = "\(String(hospital.distance)) mi"
         cell.address.attributedText = NSAttributedString(string: hospital.address, attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
@@ -92,7 +96,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.phoneNumber.attributedText = NSAttributedString(string: hospital.phoneNumber, attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
         cell.phoneNumber.textColor = UIColor.blue
-        cell.countyLabel.text = "\(String(hospital.county)) - EMS Region \(String(hospital.regionNumber))"
+        cell.countyLabel.text = "\(String(hospital.county)) County - EMS Region \(String(hospital.regionNumber))"
         cell.rchLabel.text = "Regional Coordination Hospital \(String(hospital.rch))"
     
         return cell
