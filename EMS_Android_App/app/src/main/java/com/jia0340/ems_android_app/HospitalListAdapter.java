@@ -134,6 +134,32 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 holder.mDiversionView.setVisibility(View.VISIBLE);
                 holder.mExpandedDiversionView.setVisibility(View.VISIBLE);
 
+                Drawable currImage;
+                switch (diversions.size()) {
+                    case 1:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_1, null);
+                        break;
+                    case 2:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_2, null);
+                        break;
+                    case 3:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_3, null);
+                        break;
+                    case 4:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_4, null);
+                        break;
+                    case 5:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_5, null);
+                        break;
+                    case 6:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_6, null);
+                        break;
+                    default:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning, null);
+                        break;
+                }
+                holder.mDiversionView.setImageDrawable(currImage);
+
                 // assign text for expandedView
                 String description = diversions.get(0);
 
@@ -194,23 +220,9 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 currHospitalIcon.setVisibility(View.VISIBLE);
                 currTypeView.setVisibility(View.VISIBLE);
 
-                Drawable currImage = null;
-                String currText = "";
-
-                switch (hospitalTypes.get(i)) {
-                    case ADULT_TRAUMA_CENTER:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.person, null);
-                        currText = mContext.getString(R.string.adult_trauma_center);
-                        break;
-                    case BRAIN:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.brain, null);
-                        currText = mContext.getString(R.string.brain);
-                        break;
-                    case HEART:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.heart, null);
-                        currText = mContext.getString(R.string.heart);
-                        break;
-                }
+                HospitalType currHospitalType = hospitalTypes.get(i);
+                Drawable currImage = ResourcesCompat.getDrawable(mContext.getResources(), currHospitalType.getImageId(), null);
+                String currText = mContext.getString(currHospitalType.getStringId());
 
                 currHospitalIcon.setImageDrawable(currImage);
                 currTypeView.setCompoundDrawablesWithIntrinsicBounds(currImage, null, null, null);

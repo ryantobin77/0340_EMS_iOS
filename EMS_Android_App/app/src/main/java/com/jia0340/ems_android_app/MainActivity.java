@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         getHospitalData();
+
     }
 
     /**
