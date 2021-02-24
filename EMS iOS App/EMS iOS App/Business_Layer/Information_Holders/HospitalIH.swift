@@ -15,21 +15,21 @@ class HospitalIH: NSObject {
     var hospitalType: HospitalType!
     var distance: Float!
     var hasDiversion: Bool!
+    var diversions: [String]!
     var address: String!
     var phoneNumber: String!
     var regionNumber: String!
     var county: String!
     var rch: String! //Regional Coordinating Hospital
     
-    init(name: String, nedocsScore: NedocsScore, hospitalType: HospitalType, distance: Float, hasDiversion: Bool, address: String, phoneNumber: String,
-         regionNumber: String,
-         county: String,
-         rch: String) {
+
+    init(name: String, nedocsScore: NedocsScore, hospitalType: HospitalType, distance: Float, hasDiversion: Bool, diversions: [String], address: String, phoneNumber: String, regionNumber: String, county: String, rch: String) {
         self.name = name
         self.nedocsScore = nedocsScore
         self.hospitalType = hospitalType
         self.distance = distance
         self.hasDiversion = hasDiversion
+        self.diversions = diversions
         self.address = address
         self.phoneNumber = phoneNumber
         self.regionNumber = regionNumber
@@ -59,7 +59,7 @@ class HospitalIH: NSObject {
             let address = street + ", " + city + ", " + state + " " + zip
             
             // Hardcoded: hospital type, distance, county
-            let hosp = HospitalIH(name: name, nedocsScore: NedocsScore(rawValue: nedocsScore)!, hospitalType: HospitalType.adultTraumaCenter, distance: 1.0, hasDiversion: (diversions.count > 0), address: address, phoneNumber: phone, regionNumber: emsRegion, county: "Fulton County", rch: rch_value)
+            let hosp = HospitalIH(name: name, nedocsScore: NedocsScore(rawValue: nedocsScore)!, hospitalType: HospitalType.adultTraumaCenterLevelI, distance: 1.0, hasDiversion: (diversions.count > 0), diversions: diversions, address: address, phoneNumber: phone, regionNumber: emsRegion, county: "Fulton County", rch: rch_value)
             result.append(hosp)
         }
         return result

@@ -52,21 +52,33 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.nedocsLabel.text = hospital.nedocsScore.rawValue
         if (hospital.hasDiversion) {
             cell.horStackView2.isHidden = false
-            cell.medicalDiversionIcon2Label2.isHidden = false
-            cell.medicalDiversionIcon2Label3.isHidden = true
+            cell.expandedDiversionIconLabel.isHidden = false
 
-            cell.medicalDiversionIcon?.image = UIImage(named: "WarningIcon")
-            cell.medicalDiversionIcon2?.image = UIImage(named: "WarningIcon")
-            cell.medicalDiversionIcon2Label.text = "Medical Diversion"
-            //cell.medicalDiversionIcon2Label2.text = "Psych Diversion"
-            cell.medicalDiversionIcon2Label2.isHidden = true
+            let currDiversionIcon: UIImage!
+            switch hospital.diversions.count {
+            case 1:
+                currDiversionIcon = UIImage(named: "Warning1Icon")
+            case 2:
+                currDiversionIcon = UIImage(named: "Warning2Icon")
+            case 3:
+                currDiversionIcon = UIImage(named: "Warning3Icon")
+            case 4:
+                currDiversionIcon = UIImage(named: "Warning4Icon")
+            case 5:
+                currDiversionIcon = UIImage(named: "Warning5Icon")
+            case 6:
+                currDiversionIcon = UIImage(named: "Warning6Icon")
+            default:
+                currDiversionIcon = UIImage(named: "WarningIcon")
+            }
+            cell.diversionIcon?.image = currDiversionIcon
+            cell.expandedDiversionIcon?.image = UIImage(named: "WarningIcon")
+            cell.expandedDiversionIconLabel.text = "Medical Diversion"
         } else {
             cell.horStackView2.isHidden = true
-            cell.medicalDiversionIcon?.image = nil
-            cell.medicalDiversionIcon2?.image = nil
-            cell.medicalDiversionIcon2Label.text = ""
-            cell.medicalDiversionIcon2Label2.isHidden = true
-            cell.medicalDiversionIcon2Label3.isHidden = true
+            cell.diversionIcon?.image = nil
+            cell.expandedDiversionIcon?.image = nil
+            cell.expandedDiversionIconLabel.text = ""
         }
         cell.hospitalTypeIcon2Label.text = hospital.hospitalType.map { $0.rawValue }
         
