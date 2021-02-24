@@ -79,7 +79,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 200
+            return 220
         }
 
         return 90
@@ -97,6 +97,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.expandButton.isHidden = true
         cell.minimizeButton.isHidden = false
         
+        //cell.expandButton.frame.origin.y = cell.expandButton.frame.origin.y + 110
+
+        
         if self.selectedRowIndex != -1 {
             self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath)?.backgroundColor = UIColor.white
         }
@@ -104,7 +107,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         if selectedRowIndex != indexPath.row {
             self.thereIsCellTapped = true
             self.selectedRowIndex = indexPath.row
-            let image = UIImage(named:"ArrowIconUp")
+            let image = UIImage(named:"ArrowIcon")
             cell.expandButton.setImage(image, for: .normal)
         }
         else {
@@ -119,7 +122,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             
         //cell.expandButton.origin.x
         }
-        print(cell.expandButton.frame.origin.y)
+        //cell.expandButton.isHidden = false
+        //print(cell.expandButton.frame.origin.y)
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
         
