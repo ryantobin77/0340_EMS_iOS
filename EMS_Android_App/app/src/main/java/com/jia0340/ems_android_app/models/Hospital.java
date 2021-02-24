@@ -60,7 +60,7 @@ public class Hospital {
         mDiversions = diversions;
         mLastUpdated = lastUpdated;
 
-        mDistance = 4.56;
+        mDistance = 1.11;
 
     }
 
@@ -130,9 +130,5 @@ public class Hospital {
 
     public void setFavorite(boolean favorite) {
         mFavorite = favorite;
-    }
-
-    public void setDistance(double distance) {
-        mDistance = distance;
     }
 }

@@ -94,14 +94,6 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
     }
 
     /**
-     * Placeholder method to calculate distance to hospital
-     * @param hospital current hospital
-     */
-    private void calculateDistance(Hospital hospital) {
-        hospital.setDistance(1.23);
-    }
-
-    /**
      * Get the number of items in stored in recyclerView
      *
      * @return number of items in hospitalList
