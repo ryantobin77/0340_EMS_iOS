@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "brain.svg",
+      "filename" : "brain_comprehensive.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "brain-1.svg",
+      "filename" : "brain_comprehensive-1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "brain-2.svg",
+      "filename" : "brain_comprehensive-2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

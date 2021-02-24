@@ -49,9 +49,9 @@ extension HospitalType {
         var image: UIImage!
         switch self {
         case .adultTraumaCenter:
-            image = UIImage(named: "PersonIcon")
+            image = UIImage(named: "Person1Icon")
         case .heart:
-            image = UIImage(named: "HeartIcon")
+            image = UIImage(named: "Heart1Icon")
         case .brain:
             image = UIImage(named: "BrainIcon")
         }
