@@ -24,9 +24,9 @@
     <string name="neonatal_center_1">Neonatal Center - Level 1</string>
     <string name="neonatal_center_2">Neonatal Center - Level 2</string>
     <string name="neonatal_center_3">Neonatal Center - Level 3</string>
-    <string name="maternal_center_1">Neonatal Center - Level 1</string>
-    <string name="maternal_center_2">Neonatal Center - Level 2</string>
-    <string name="maternal_center_3">Neonatal Center - Level 3</string>
+    <string name="maternal_center_1">Maternal Center - Level 1</string>
+    <string name="maternal_center_2">Maternal Center - Level 2</string>
+    <string name="maternal_center_3">Maternal Center - Level 3</string>
 
     <!--misc. labels-->
     <string name="distance">%.2f mi</string>
