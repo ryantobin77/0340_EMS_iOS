@@ -188,23 +188,9 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="s9n-7U-qXV">
-                                                                            <rect key="frame" x="0.0" y="25" width="375" height="0.0"/>
-                                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="I0G-Qc-vr6">
-                                                                            <rect key="frame" x="0.0" y="25" width="375" height="0.0"/>
-                                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="I0G-Qc-vr6" firstAttribute="centerX" secondItem="l9S-tv-zsu" secondAttribute="centerX" id="WWe-ut-Zjb"/>
                                                                         <constraint firstItem="H1A-mz-z0v" firstAttribute="centerX" secondItem="l9S-tv-zsu" secondAttribute="centerX" id="jfq-GD-6oA"/>
-                                                                        <constraint firstItem="s9n-7U-qXV" firstAttribute="centerX" secondItem="l9S-tv-zsu" secondAttribute="centerX" id="t7a-4u-ItE"/>
                                                                         <constraint firstItem="H1A-mz-z0v" firstAttribute="centerY" secondItem="l9S-tv-zsu" secondAttribute="centerY" id="vJk-BC-KDg"/>
                                                                     </constraints>
                                                                 </stackView>
@@ -278,7 +264,10 @@
                                             <outlet property="address" destination="DpC-V9-IQF" id="Ax4-FD-Tbh"/>
                                             <outlet property="countyLabel" destination="Orb-7z-h0T" id="Y5t-mI-v1U"/>
                                             <outlet property="distanceLabel" destination="vvY-Rz-OBQ" id="jy8-Th-Ms4"/>
+                                            <outlet property="diversionIcon" destination="3aZ-Nw-Zpl" id="UQC-RY-pL0"/>
                                             <outlet property="expandButton" destination="tbL-O0-31Z" id="Kfz-Zc-8UJ"/>
+                                            <outlet property="expandedDiversionIcon" destination="T3X-rN-0yH" id="7kd-z3-pHQ"/>
+                                            <outlet property="expandedDiversionIconLabel" destination="H1A-mz-z0v" id="UAu-5Q-Wq6"/>
                                             <outlet property="favoritePin" destination="lQh-OH-55M" id="nKB-Uc-Hxc"/>
                                             <outlet property="horStackView1" destination="JlF-ZX-ZK7" id="30b-wu-dr6"/>
                                             <outlet property="horStackView2" destination="dLX-Vi-iBp" id="3aI-1c-kQt"/>
@@ -290,11 +279,6 @@
                                             <outlet property="hospitalTypeIcon2" destination="vry-cU-nno" id="V5c-t2-Jah"/>
                                             <outlet property="hospitalTypeIcon2Label" destination="oKE-nB-QnM" id="f3S-GU-DHm"/>
                                             <outlet property="mapPinView" destination="Xy6-1Y-HKV" id="VTP-BI-Qih"/>
-                                            <outlet property="medicalDiversionIcon" destination="3aZ-Nw-Zpl" id="UQC-RY-pL0"/>
-                                            <outlet property="medicalDiversionIcon2" destination="T3X-rN-0yH" id="7kd-z3-pHQ"/>
-                                            <outlet property="medicalDiversionIcon2Label" destination="H1A-mz-z0v" id="UAu-5Q-Wq6"/>
-                                            <outlet property="medicalDiversionIcon2Label2" destination="s9n-7U-qXV" id="qaN-D1-pMp"/>
-                                            <outlet property="medicalDiversionIcon2Label3" destination="I0G-Qc-vr6" id="BeN-lF-zQ1"/>
                                             <outlet property="nedocsLabel" destination="ghC-tC-3ji" id="m1H-co-EJL"/>
                                             <outlet property="nedocsView" destination="90S-SX-gSq" id="ggb-gg-WtR"/>
                                             <outlet property="phoneIcon" destination="jS8-tw-GnI" id="ly7-S7-QJF"/>
@@ -343,7 +327,7 @@
     <resources>
         <image name="AddressIcon" width="20" height="20"/>
         <image name="ArrowIcon" width="249" height="256"/>
-        <image name="BrainIcon" width="25" height="25"/>
+        <image name="BrainIcon" width="512" height="512"/>
         <image name="FilterIcon" width="24" height="24"/>
         <image name="MapPin" width="32" height="32"/>
         <image name="OutlineFavoritePin" width="18" height="18"/>
@@ -351,7 +335,7 @@
         <image name="PhoneIconWhite" width="24" height="24"/>
         <image name="SearchIcon" width="24" height="24"/>
         <image name="SortIcon" width="24" height="24"/>
-        <image name="WarningIcon" width="24" height="24"/>
+        <image name="WarningIcon" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
