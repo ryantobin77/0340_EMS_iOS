@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
         //TODO: remove dummy data
 
         ArrayList<HospitalType> gradyTypes = new ArrayList<>();
-        gradyTypes.add(HospitalType.ADULT_TRAUMA_CENTER);
-        gradyTypes.add(HospitalType.BRAIN);
+        gradyTypes.add(HospitalType.ADULT_TRAUMA_CENTER_LEVEL_III);
+        gradyTypes.add(HospitalType.PRIMARY_STROKE_CENTER);
 
         ArrayList<String> gradyDiversions = new ArrayList<>();
         gradyDiversions.add("Medical Diversion");
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 "Dodge", "EMS Region 5", "Regional Coordinating Hospital H", 2.8, true, dodgeDiversions));
 
         ArrayList<HospitalType> redmondTypes = new ArrayList<>();
-        redmondTypes.add(HospitalType.HEART);
+        redmondTypes.add(HospitalType.EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I);
 
         mHospitalList.add(new Hospital("Redmond Regional Medical Ctr",
                 NedocsScore.SEVERE, redmondTypes, "(706) 291-0291",
@@ -78,17 +78,17 @@ public class MainActivity extends AppCompatActivity {
                 21.76, false, null));
 
         ArrayList<HospitalType> upsonTypes = new ArrayList<>();
-        upsonTypes.add(HospitalType.BRAIN);
-        upsonTypes.add(HospitalType.HEART);
+        upsonTypes.add(HospitalType.PRIMARY_STROKE_CENTER);
+        upsonTypes.add(HospitalType.EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I);
 
         mHospitalList.add(new Hospital("Upson Regional Medical Center", NedocsScore.BUSY, upsonTypes,
                 "(706) 647-8111", "801 W Gordon St, Thomaston, GA 30286", "Upson", "EMS Region 4",
                 "Regional Coordinating Hospital F",1.9, false, null));
 
         ArrayList<HospitalType> piedmontTypes = new ArrayList<>();
-        piedmontTypes.add(HospitalType.BRAIN);
-        piedmontTypes.add(HospitalType.HEART);
-        piedmontTypes.add(HospitalType.ADULT_TRAUMA_CENTER);
+        piedmontTypes.add(HospitalType.PRIMARY_STROKE_CENTER);
+        piedmontTypes.add(HospitalType.EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I);
+        piedmontTypes.add(HospitalType.ADULT_TRAUMA_CENTER_LEVEL_III);
 
         ArrayList<String> piedmontDiversions = new ArrayList<>();
         piedmontDiversions.add("ER Saturation");

@@ -191,16 +191,16 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 String currText = "";
 
                 switch (hospitalTypes.get(i)) {
-                    case ADULT_TRAUMA_CENTER:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.person, null);
+                    case ADULT_TRAUMA_CENTER_LEVEL_III:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.person_3, null);
                         currText = mContext.getString(R.string.adult_trauma_center);
                         break;
-                    case BRAIN:
+                    case PRIMARY_STROKE_CENTER:
                         currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.brain, null);
                         currText = mContext.getString(R.string.brain);
                         break;
-                    case HEART:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.heart, null);
+                    case EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.heart_1, null);
                         currText = mContext.getString(R.string.heart);
                         break;
                 }

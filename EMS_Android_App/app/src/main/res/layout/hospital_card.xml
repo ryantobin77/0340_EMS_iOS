@@ -158,7 +158,7 @@
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="parent"
-                        app:srcCompat="@drawable/person" />
+                        app:srcCompat="@drawable/person_3" />
 
                     <ImageView
                         android:id="@+id/hospitalType2View"
@@ -175,7 +175,7 @@
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toEndOf="@id/hospitalType1View"
                         app:layout_constraintTop_toBottomOf="parent"
-                        app:srcCompat="@drawable/heart" />
+                        app:srcCompat="@drawable/heart_1" />
 
                     <ImageView
                         android:id="@+id/hospitalType3View"
@@ -311,7 +311,7 @@
                     android:drawablePadding="5dp"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    app:drawableLeftCompat="@drawable/person"
+                    app:drawableLeftCompat="@drawable/person_3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/diversionDescription"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -327,7 +327,7 @@
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:visibility="gone"
-                    app:drawableLeftCompat="@drawable/heart"
+                    app:drawableLeftCompat="@drawable/heart_1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/hospitalType1Description"
                     app:layout_constraintEnd_toEndOf="parent"
