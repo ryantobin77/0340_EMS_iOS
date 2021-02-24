@@ -129,7 +129,7 @@
                     app:layout_constraintStart_toStartOf="@id/hospitalName"
                     app:layout_constraintTop_toBottomOf="@id/hospitalName"
                     app:layout_constraintVertical_bias="0.05"
-                    app:srcCompat="@drawable/warning_icon" />
+                    app:srcCompat="@drawable/warning" />
 
                 <LinearLayout
                     android:id="@+id/hospitalTypeIconHolder"
@@ -285,7 +285,7 @@
                     android:maxHeight="25dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/addressView"
-                    app:srcCompat="@drawable/warning_icon" />
+                    app:srcCompat="@drawable/warning" />
 
                 <TextView
                     android:id="@+id/diversionDescription"

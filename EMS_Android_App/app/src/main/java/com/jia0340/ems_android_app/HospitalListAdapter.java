@@ -133,6 +133,32 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 holder.mDiversionView.setVisibility(View.VISIBLE);
                 holder.mExpandedDiversionView.setVisibility(View.VISIBLE);
 
+                Drawable currImage;
+                switch (diversions.size()) {
+                    case 1:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_1, null);
+                        break;
+                    case 2:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_2, null);
+                        break;
+                    case 3:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_3, null);
+                        break;
+                    case 4:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_4, null);
+                        break;
+                    case 5:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_5, null);
+                        break;
+                    case 6:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_6, null);
+                        break;
+                    default:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning, null);
+                        break;
+                }
+                holder.mDiversionView.setImageDrawable(currImage);
+
                 // assign text for expandedView
                 String description = diversions.get(0);
 
