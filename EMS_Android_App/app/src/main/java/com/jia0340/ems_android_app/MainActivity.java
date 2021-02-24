@@ -7,14 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.jia0340.ems_android_app.models.Hospital;
-import com.jia0340.ems_android_app.models.HospitalType;
-import com.jia0340.ems_android_app.models.NedocsScore;
+import com.jia0340.ems_android_app.network.DataService;
+import com.jia0340.ems_android_app.network.RetrofitClientInstance;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Activity that corresponds to the activity_main.xml file
@@ -29,82 +36,32 @@ public class MainActivity extends AppCompatActivity {
     private HospitalListAdapter mHospitalAdapter;
     private Toolbar mToolbar;
 
+    /**
+     * Create method for application
+     * Called when the app is started
+     * Used to set the content view, get initial hospital data, and setup recyclerView
+     * @param savedInstanceState saved instance of app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView hospitalRecyclerView = (RecyclerView) findViewById(R.id.hospital_list);
-
         // Attaching the layout to the toolbar object
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         // Setting toolbar as the ActionBar with setSupportActionBar() call
         setSupportActionBar(mToolbar);
 
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        hospitalRecyclerView.addItemDecoration(itemDecoration);
+        getHospitalData();
 
-        //TODO: remove dummy data
-
-        ArrayList<HospitalType> gradyTypes = new ArrayList<>();
-        gradyTypes.add(HospitalType.ADULT_TRAUMA_CENTER_LEVEL_III);
-        gradyTypes.add(HospitalType.PRIMARY_STROKE_CENTER);
-
-        ArrayList<String> gradyDiversions = new ArrayList<>();
-        gradyDiversions.add("Medical Diversion");
-        gradyDiversions.add("Psych Diversion");
-
-        mHospitalList = new ArrayList<>();
-
-        mHospitalList.add(new Hospital("Grady Health System", NedocsScore.SEVERE,
-                gradyTypes, "(404) 616-6440", "80 Jesse Hill Jr Dr SE, Atlanta, GA 30303",
-                "Fulton", "EMS Region 3", "Regional Coordinating Hospital D", 1.98,
-                true, gradyDiversions));
-
-        ArrayList<String> dodgeDiversions = new ArrayList<>();
-        dodgeDiversions.add("ICU/CCU Diversion");
-
-        mHospitalList.add(new Hospital("Dodge County Hospital", NedocsScore.NORMAL, null,
-                "(478) 448-4000", "901 Griffin Ave, Eastman, GA 31023",
-                "Dodge", "EMS Region 5", "Regional Coordinating Hospital H", 2.8, true, dodgeDiversions));
-
-        ArrayList<HospitalType> redmondTypes = new ArrayList<>();
-        redmondTypes.add(HospitalType.EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I);
-
-        mHospitalList.add(new Hospital("Redmond Regional Medical Ctr",
-                NedocsScore.SEVERE, redmondTypes, "(706) 291-0291",
-                "501 Redmond Rd, Rome, GA 30165", "Floyd",
-                "EMS Region 1", "Regional Coordinating Hospital C",
-                21.76, false, null));
-
-        ArrayList<HospitalType> upsonTypes = new ArrayList<>();
-        upsonTypes.add(HospitalType.PRIMARY_STROKE_CENTER);
-        upsonTypes.add(HospitalType.EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I);
-
-        mHospitalList.add(new Hospital("Upson Regional Medical Center", NedocsScore.BUSY, upsonTypes,
-                "(706) 647-8111", "801 W Gordon St, Thomaston, GA 30286", "Upson", "EMS Region 4",
-                "Regional Coordinating Hospital F",1.9, false, null));
-
-        ArrayList<HospitalType> piedmontTypes = new ArrayList<>();
-        piedmontTypes.add(HospitalType.PRIMARY_STROKE_CENTER);
-        piedmontTypes.add(HospitalType.EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I);
-        piedmontTypes.add(HospitalType.ADULT_TRAUMA_CENTER_LEVEL_III);
-
-        ArrayList<String> piedmontDiversions = new ArrayList<>();
-        piedmontDiversions.add("ER Saturation");
-        piedmontDiversions.add("ICU/CCU Diversion");
-        piedmontDiversions.add("Psych Diversion");
-
-        mHospitalList.add(new Hospital("Piedmont - Atlanta Hospital", NedocsScore.OVERCROWDED, piedmontTypes,
-                "(404) 605-5000", "1968 Peachtree Rd NW, Atlanta, GA 30309", "Fulton",
-                "EMS Region 3", "Regional Coordinating Hospital D",
-                1.2, true, piedmontDiversions));
-
-        mHospitalAdapter = new HospitalListAdapter(mHospitalList, this);
-        hospitalRecyclerView.setAdapter(mHospitalAdapter);
-        hospitalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * Instantiates the menu at the top of the screen
+     * Includes call, sort, filter and search buttons
+     * @param menu Menu that we want our layout set to
+     * @return Return true if menu was created successfully
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -112,9 +69,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //TODO: logic for menu
+    /**
+     * Called when one of the buttons in the menu is called
+     * @param item The item that has been selected
+     * @return Return true is logic is completed successfully
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //TODO: logic for menu
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -126,5 +89,49 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Gets the hospital data from the database and assigns it to mHospitalList
+     * If response was retrieved correctly, set up the recyclerView and populate with data
+     */
+    public void getHospitalData() {
+
+        /*Create handle for the RetrofitInstance interface*/
+        DataService service = RetrofitClientInstance.getRetrofitInstance().create(DataService.class);
+        Call<List<Hospital>> call = service.getHospitals();
+        call.enqueue(new Callback<List<Hospital>>() {
+            @Override
+            public void onResponse(Call<List<Hospital>> call, Response<List<Hospital>> response) {
+                // Save the returned list
+                mHospitalList = (ArrayList<Hospital>) response.body();
+                // Now we can setup the recyclerView
+                instantiateRecyclerView();
+            }
+
+            @Override
+            public void onFailure(Call<List<Hospital>> call, Throwable t) {
+                // Failed to collect hospital data
+                // TODO: what do we want to happen when it fails?
+                Log.d("MainActiity", t.getMessage());
+                Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    /**
+     * Set up the recyclerView and adapter
+     */
+    private void instantiateRecyclerView() {
+
+        RecyclerView hospitalRecyclerView = findViewById(R.id.hospital_list);
+
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        hospitalRecyclerView.addItemDecoration(itemDecoration);
+
+        mHospitalAdapter = new HospitalListAdapter(mHospitalList, this);
+        hospitalRecyclerView.setAdapter(mHospitalAdapter);
+        hospitalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

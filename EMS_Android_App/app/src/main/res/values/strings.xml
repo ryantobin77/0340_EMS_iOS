@@ -30,6 +30,9 @@
 
     <!--misc. labels-->
     <string name="distance">%.2f mi</string>
+    <string name="address">%s,\n%s, %s %s</string>
+    <string name="county_region">%s - Region %s</string>
+    <string name="regional_coordinating_hospital">Regional Coordinating Hospital %s</string>
 
     <!--image accessibility text-->
     <string name="favorite_pin">pin to favorites</string>
@@ -39,8 +42,5 @@
     <string name="map_icon">address</string>
     <string name="expand_icon">expand</string>
     <string name="collapse_icon">collapse</string>
-
-    <!--utility-->
-    <string name="hyphen">-</string>
 
 </resources>
