@@ -187,23 +187,9 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 currHospitalIcon.setVisibility(View.VISIBLE);
                 currTypeView.setVisibility(View.VISIBLE);
 
-                Drawable currImage = null;
-                String currText = "";
-
-                switch (hospitalTypes.get(i)) {
-                    case ADULT_TRAUMA_CENTER_LEVEL_III:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.person_3, null);
-                        currText = mContext.getString(R.string.adult_trauma_center);
-                        break;
-                    case PRIMARY_STROKE_CENTER:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.brain, null);
-                        currText = mContext.getString(R.string.brain);
-                        break;
-                    case EMERGENCY_CARDIAC_CARE_CENTER_LEVEL_I:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.heart_1, null);
-                        currText = mContext.getString(R.string.heart);
-                        break;
-                }
+                HospitalType currHospitalType = hospitalTypes.get(i);
+                Drawable currImage = ResourcesCompat.getDrawable(mContext.getResources(), currHospitalType.getImageId(), null);
+                String currText = mContext.getString(currHospitalType.getStringId());
 
                 currHospitalIcon.setImageDrawable(currImage);
                 currTypeView.setCompoundDrawablesWithIntrinsicBounds(currImage, null, null, null);
