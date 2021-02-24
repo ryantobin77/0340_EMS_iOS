@@ -17,14 +17,12 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet var mapPinView: UIImageView!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var hospitalTypeIcon: UIImageView!
-    @IBOutlet var medicalDiversionIcon: UIImageView?
-    @IBOutlet var medicalDiversionIcon2: UIImageView?
+    @IBOutlet var diversionIcon: UIImageView?
+    @IBOutlet var expandedDiversionIcon: UIImageView?
     @IBOutlet var hospitalTypeIcon2: UIImageView!
     @IBOutlet weak var phoneIcon: UIImageView!
     @IBOutlet var hospitalTypeIcon2Label: UILabel!
-    @IBOutlet weak var medicalDiversionIcon2Label2: UILabel!
-    @IBOutlet weak var medicalDiversionIcon2Label3: UILabel!
-    @IBOutlet var medicalDiversionIcon2Label: UILabel!
+    @IBOutlet var expandedDiversionIconLabel: UILabel!
     @IBOutlet var address: UILabel!
         /*= {
         let label = UILabel()
