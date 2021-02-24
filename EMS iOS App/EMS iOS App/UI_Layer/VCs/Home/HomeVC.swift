@@ -142,16 +142,16 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
     
     func getHospitals() {
         hospitals = Array<HospitalIH>()
-        hospitals.append(HospitalIH(name: "Grady Health System", nedocsScore: .severe, hospitalType: .adultTraumaCenter, distance: 0.5, hasDiversion: true, address: "80 Jesse Hill Jr Dr SE, Atlanta, GA 30303", phoneNumber: "4046161000", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "WellStar - South", nedocsScore: .normal, hospitalType: .heart, distance: 1.1, hasDiversion: false, address: "Test Address", phoneNumber: "234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Emory - University Hospital", nedocsScore: .busy, hospitalType: .brain, distance: 1.3, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Dekalb", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 4", nedocsScore: .busy, hospitalType: .brain, distance: 1.5, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 1, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 5", nedocsScore: .normal, hospitalType: .heart, distance: 1.6, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 6", nedocsScore: .normal, hospitalType: .heart, distance: 2.0, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 7", nedocsScore: .severe, hospitalType: .brain, distance: 3.5, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 8", nedocsScore: .busy, hospitalType: .brain, distance: 5.7, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 9", nedocsScore: .severe, hospitalType: .brain, distance: 7.9, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
-        hospitals.append(HospitalIH(name: "Hospital 10", nedocsScore: .severe, hospitalType: .adultTraumaCenter, distance: 10.5, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Grady Health System", nedocsScore: .severe, hospitalType: .adultTraumaCenterLevelI, distance: 0.5, hasDiversion: true, address: "80 Jesse Hill Jr Dr SE, Atlanta, GA 30303", phoneNumber: "4046161000", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "WellStar - South", nedocsScore: .normal, hospitalType: .emergencyCardiacCenterLevelI, distance: 1.1, hasDiversion: false, address: "Test Address", phoneNumber: "234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Emory - University Hospital", nedocsScore: .busy, hospitalType: .remoteStrokeCenter, distance: 1.3, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Dekalb", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 4", nedocsScore: .busy, hospitalType: .thrombectomyStrokeCenter, distance: 1.5, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 1, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 5", nedocsScore: .normal, hospitalType: .emergencyCardiacCenterLevelII, distance: 1.6, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 6", nedocsScore: .normal, hospitalType: .emergencyCardiacCenterLevelI, distance: 2.0, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 7", nedocsScore: .severe, hospitalType: .pediatricTraumaCenterLevelI, distance: 3.5, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 8", nedocsScore: .busy, hospitalType: .neonatalCenterLevelI, distance: 5.7, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 9", nedocsScore: .severe, hospitalType: .maternalCenterLevelII, distance: 7.9, hasDiversion: false, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
+        hospitals.append(HospitalIH(name: "Hospital 10", nedocsScore: .severe, hospitalType: .adultTraumaCenterLevelII, distance: 10.5, hasDiversion: true, address: "Test Address", phoneNumber: "1234567890", regionNumber: 3, county: "Fulton", rch: "D"))
     }
     
 }

@@ -48,12 +48,44 @@ extension HospitalType {
     func getHospitalIcon() -> UIImage {
         var image: UIImage!
         switch self {
-        case .adultTraumaCenter:
+        case .adultTraumaCenterLevelI:
             image = UIImage(named: "Person1Icon")
-        case .heart:
-            image = UIImage(named: "Heart1Icon")
-        case .brain:
+        case .adultTraumaCenterLevelII:
+            image = UIImage(named: "Person2Icon")
+        case .adultTraumaCenterLevelIII:
+            image = UIImage(named: "Person3Icon")
+        case .adultTraumaCenterLevelIV:
+            image = UIImage(named: "Person4Icon")
+        case .pediatricTraumaCenterLevelI:
+            image = UIImage(named: "Child1Icon")
+        case .pediatricTraumaCenterLevelII:
+            image = UIImage(named: "Child2Icon")
+        case .comprehensiveStrokeCenter:
+            image = UIImage(named: "BrainComprehensiveIcon")
+        case .thrombectomyStrokeCenter:
+            image = UIImage(named: "BrainThrombectomyIcon")
+        case .primaryStrokeCenter:
             image = UIImage(named: "BrainIcon")
+        case .remoteStrokeCenter:
+            image = UIImage(named: "BrainRemoteIcon")
+        case .emergencyCardiacCenterLevelI:
+            image = UIImage(named: "Heart1Icon")
+        case .emergencyCardiacCenterLevelII:
+            image = UIImage(named: "Heart2Icon")
+        case .emergencyCardiacCenterLevelIII:
+            image = UIImage(named: "Heart3Icon")
+        case .neonatalCenterLevelI:
+            image = UIImage(named: "Baby1Icon")
+        case .neonatalCenterLevelII:
+            image = UIImage(named: "Baby2Icon")
+        case .neonatalCenterLevelIII:
+            image = UIImage(named: "Baby3Icon")
+        case .maternalCenterLevelI:
+            image = UIImage(named: "Pregnant1Icon")
+        case .maternalCenterLevelII:
+            image = UIImage(named: "Pregnant2Icon")
+        case .maternalCenterLevelIII:
+            image = UIImage(named: "Pregnant3Icon")
         }
         return image
     }

@@ -16,7 +16,23 @@ enum NedocsScore: String {
 }
 
 enum HospitalType: String {
-    case adultTraumaCenter = "Adult Trauma Center"
-    case heart = "Emergency Cardiac Care Center"
-    case brain = "Stroke Center"
+    case adultTraumaCenterLevelI = "Adult Trauma Center - Level 1"
+    case adultTraumaCenterLevelII = "Adult Trauma Center - Level 2"
+    case adultTraumaCenterLevelIII = "Adult Trauma Center - Level 3"
+    case adultTraumaCenterLevelIV = "Adult Trauma Center - Level 4"
+    case pediatricTraumaCenterLevelI = "Pediatric Trauma Center - Level 1"
+    case pediatricTraumaCenterLevelII = "Pediatric Trauma Center - Level 2"
+    case comprehensiveStrokeCenter = "Comprehensive Stroke Center"
+    case thrombectomyStrokeCenter = "Thrombectomy Stroke Center"
+    case primaryStrokeCenter = "Primary Stroke Center"
+    case remoteStrokeCenter = "Remote Treatment Stroke Center"
+    case emergencyCardiacCenterLevelI = "Emergency Cardiac Care Center - Level 1"
+    case emergencyCardiacCenterLevelII = "Emergency Cardiac Care Center - Level 2"
+    case emergencyCardiacCenterLevelIII = "Emergency Cardiac Care Center - Level 3"
+    case neonatalCenterLevelI = "Neonatal Center - Level 1"
+    case neonatalCenterLevelII = "Neonatal Center - Level 2"
+    case neonatalCenterLevelIII = "Neonatal Center - Level 3"
+    case maternalCenterLevelI = "Maternal Center - Level 1"
+    case maternalCenterLevelII = "Maternal Center - Level 2"
+    case maternalCenterLevelIII = "Maternal Center - Level 3"
 }
