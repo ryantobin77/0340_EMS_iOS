@@ -58,5 +58,4 @@ def get_hospitals(request):
 
         }
         hospitals_list.append(next)
-    json_dict = {'hospitals' : hospitals_list}
-    return JsonResponse(json_dict)
+    return JsonResponse(hospitals_list, safe=False)
