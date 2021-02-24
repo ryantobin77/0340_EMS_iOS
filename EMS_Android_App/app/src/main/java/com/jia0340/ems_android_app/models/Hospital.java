@@ -41,6 +41,7 @@ public class Hospital {
                     @JsonProperty("city") String city,
                     @JsonProperty("state") String state,
                     @JsonProperty("zip") String zip,
+                    @JsonProperty("county") String county,
                     @JsonProperty("ems_region") String region,
                     @JsonProperty("rch") String regionalCoordinatingHospital,
                     @JsonProperty("diversions") ArrayList<String> diversions,
@@ -54,7 +55,7 @@ public class Hospital {
         mCity = city;
         mState = state;
         mZipCode = zip;
-        mCounty = "TODO: still need county";
+        mCounty = county;
         mRegion = region;
         mRegionalCoordinatingHospital = regionalCoordinatingHospital;
         mDiversions = diversions;

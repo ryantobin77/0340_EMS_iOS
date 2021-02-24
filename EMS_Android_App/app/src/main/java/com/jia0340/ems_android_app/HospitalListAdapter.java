@@ -72,15 +72,15 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
 
         Hospital hospital = mHospitalList.get(position);
 
-//        calculateDistance(hospital);
-
         holder.mHospitalName.setText(hospital.getName());
         holder.mDistanceLabel.setText(mContext.getString(R.string.distance, hospital.getDistance()));
         holder.mPhoneNumber.setText(hospital.getPhoneNumber());
         holder.mAddressView.setText(mContext.getString(R.string.address, hospital.getStreetAddress(),
                                             hospital.getCity(), hospital.getState(), hospital.getZipCode()));
-        holder.mCountyRegionText.setText(mContext.getString(R.string.county_region, hospital.getCounty(), hospital.getRegion()));
-        holder.mRegionalCoordinatingText.setText(hospital.getRegionalCoordinatingHospital());
+        holder.mCountyRegionText.setText(mContext.getString(R.string.county_region, hospital.getCounty(),
+                                            hospital.getRegion()));
+        holder.mRegionalCoordinatingText.setText(mContext.getString(R.string.regional_coordinating_hospital,
+                                            hospital.getRegionalCoordinatingHospital()));
 
         handleNedocsValues(holder, hospital.getNedocsScore());
 
@@ -128,8 +128,11 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
      */
     public void handleDiversions(ViewHolder holder, ArrayList<String> diversions) {
 
-        if (diversions.size() > 0) {
-            if (diversions != null && diversions.size() > 0) {
+        if (diversions != null && diversions.size() > 0) {
+
+            if (diversions.size() == 1 && diversions.get(0).equals("Normal")) {
+                hideDiversions(holder);
+            } else {
                 // set visibility of icon within collapsed/expanded views
                 holder.mDiversionView.setVisibility(View.VISIBLE);
                 holder.mExpandedDiversionView.setVisibility(View.VISIBLE);
@@ -172,11 +175,14 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 holder.mDiversionDescription.setVisibility(View.VISIBLE);
             }
         } else {
-            holder.mDiversionView.setVisibility(View.GONE);
-            holder.mExpandedDiversionView.setVisibility(View.GONE);
-            holder.mDiversionDescription.setVisibility(View.GONE);
+            hideDiversions(holder);
         }
+    }
 
+    public void hideDiversions(ViewHolder holder) {
+        holder.mDiversionView.setVisibility(View.GONE);
+        holder.mExpandedDiversionView.setVisibility(View.GONE);
+        holder.mDiversionDescription.setVisibility(View.GONE);
     }
 
     /**
@@ -217,16 +223,18 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                         break;
                 }
 
-                currHospitalIcon.setVisibility(View.VISIBLE);
-                currTypeView.setVisibility(View.VISIBLE);
+                if (currHospitalIcon != null && currTypeView != null) {
+                    currHospitalIcon.setVisibility(View.VISIBLE);
+                    currTypeView.setVisibility(View.VISIBLE);
 
-                HospitalType currHospitalType = hospitalTypes.get(i);
-                Drawable currImage = ResourcesCompat.getDrawable(mContext.getResources(), currHospitalType.getImageId(), null);
-                String currText = mContext.getString(currHospitalType.getStringId());
+                    HospitalType currHospitalType = hospitalTypes.get(i);
+                    Drawable currImage = ResourcesCompat.getDrawable(mContext.getResources(), currHospitalType.getImageId(), null);
+                    String currText = mContext.getString(currHospitalType.getStringId());
 
-                currHospitalIcon.setImageDrawable(currImage);
-                currTypeView.setCompoundDrawablesWithIntrinsicBounds(currImage, null, null, null);
-                currTypeView.setText(currText);
+                    currHospitalIcon.setImageDrawable(currImage);
+                    currTypeView.setCompoundDrawablesWithIntrinsicBounds(currImage, null, null, null);
+                    currTypeView.setText(currText);
+                }
             }
         }
     }
