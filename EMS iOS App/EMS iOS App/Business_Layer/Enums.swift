@@ -12,6 +12,7 @@ enum NedocsScore: String {
     case severe = "Severe"
     case normal = "Normal"
     case busy = "Busy"
+    case overcrowded = "Overcrowded"
 }
 
 enum HospitalType: String {

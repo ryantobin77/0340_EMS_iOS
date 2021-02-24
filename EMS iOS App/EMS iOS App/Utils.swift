@@ -37,6 +37,8 @@ extension NedocsScore {
             color = UIColor(rgb: 0xffc000)
         case .normal:
             color = UIColor(rgb: 0x70ad47)
+        case .overcrowded:
+            color = UIColor(rgb: 0xFF8C00)
         }
         return color
     }

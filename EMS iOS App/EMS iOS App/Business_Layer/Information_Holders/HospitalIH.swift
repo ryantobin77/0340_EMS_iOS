@@ -49,14 +49,17 @@ class HospitalIH: NSObject {
             let state = hospital["state"] as! String
             let zip = hospital["zip"] as! String
             let phone = hospital["phone"] as! String
-            let rch = hospital["rch"] as! String
+            var rch_value = ""
+            if let rch = hospital["rch"] as? String {
+                rch_value = rch
+            }
             let emsRegion = hospital["ems_region"] as! String
             let diversions = hospital["diversions"] as! Array<String>
             let nedocsScore = hospital["nedocs_score"] as! String
             let address = street + ", " + city + ", " + state + " " + zip
             
             // Hardcoded: hospital type, distance, county
-            let hosp = HospitalIH(name: name, nedocsScore: NedocsScore(rawValue: nedocsScore)!, hospitalType: HospitalType.adultTraumaCenter, distance: 1.0, hasDiversion: (diversions.count > 0), address: address, phoneNumber: phone, regionNumber: emsRegion, county: "Fulton County", rch: rch)
+            let hosp = HospitalIH(name: name, nedocsScore: NedocsScore(rawValue: nedocsScore)!, hospitalType: HospitalType.adultTraumaCenter, distance: 1.0, hasDiversion: (diversions.count > 0), address: address, phoneNumber: phone, regionNumber: emsRegion, county: "Fulton County", rch: rch_value)
             result.append(hosp)
         }
         return result
