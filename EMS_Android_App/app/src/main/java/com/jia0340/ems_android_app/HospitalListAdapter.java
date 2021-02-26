@@ -115,7 +115,9 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         holder.mNedocsLabel.setText(mContext.getString(score.getLabel()));
 
         if (score.equals(NedocsScore.OVERCROWDED)) {
-            holder.mNedocsLabel.setTextSize(12);
+            holder.mNedocsLabel.setTextSize(14);
+        } else {
+            holder.mNedocsLabel.setTextSize(16);
         }
 
     }
