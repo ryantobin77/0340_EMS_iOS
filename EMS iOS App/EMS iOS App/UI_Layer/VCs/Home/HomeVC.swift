@@ -54,7 +54,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.horStackView2.isHidden = false
             cell.expandedDiversionIconLabel.isHidden = false
 
-            let currDiversionIcon: UIImage!
+            let currDiversionIcon: UIImage?
             switch hospital.diversions.count {
             case 1:
                 currDiversionIcon = UIImage(named: "Warning1Icon")
@@ -72,8 +72,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
                 currDiversionIcon = UIImage(named: "WarningIcon")
             }
             cell.diversionIcon?.image = currDiversionIcon
-            cell.expandedDiversionIcon?.image = UIImage(named: "WarningIcon")
-            cell.expandedDiversionIconLabel.text = "Medical Diversion"
+            cell.expandedDiversionIcon?.image = currDiversionIcon
+            cell.expandedDiversionIconLabel.text = ""
+            for diversion in hospital.diversions {
+                cell.expandedDiversionIconLabel.text! += diversion + "\n"
+            }
         } else {
             cell.horStackView2.isHidden = true
             cell.diversionIcon?.image = nil
