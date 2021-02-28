@@ -13,6 +13,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
     @IBOutlet var tableView: UITableView!
     var hospitals: Array<HospitalIH>!
     var favoritePinTapped = false
+    var thereIsCellTapped = false
+    var selectedRowIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +82,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.expandedDiversionIcon?.image = nil
             cell.expandedDiversionIconLabel.text = ""
         }
-        if hospital.specialtyCenters.count > 0 {
+        if (hospital.specialtyCenters.count > 0) {
             cell.hospitalTypeIcon2Label.text = hospital.specialtyCenters[0].rawValue
+            cell.hospitalTypeIcon.isHidden = false
+            cell.hospitalTypeIcon2.isHidden = false
             cell.hospitalTypeIcon.image = hospital.specialtyCenters[0].getHospitalIcon()
             cell.hospitalTypeIcon2.image = hospital.specialtyCenters[0].getHospitalIcon()
         } else {
@@ -89,6 +93,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.hospitalTypeIcon.isHidden = true
             cell.hospitalTypeIcon2.isHidden = true
         }
+        
         cell.distanceLabel.text = "\(String(hospital.distance)) mi"
         cell.address.attributedText = NSAttributedString(string: hospital.address, attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
@@ -101,17 +106,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
     
         return cell
     }
-    
-    var thereIsCellTapped = false
-    var selectedRowIndex = -1
 
-    func tableView(_ tableView: UITableView,
-                   heightForRowAt indexPath: IndexPath) -> CGFloat {
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
             return 200
         }
-
         return 90
     }
     
@@ -126,23 +125,24 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         
         if self.selectedRowIndex != -1 {
             self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath)?.backgroundColor = UIColor.white
+            guard let prevCell = self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath) as? HomeTableViewCell else {
+                return
+            }
+            prevCell.expandButton.setImage(UIImage(named:"ArrowIcon"), for: .normal)
+            
         }
 
         if selectedRowIndex != indexPath.row {
             self.thereIsCellTapped = true
             self.selectedRowIndex = indexPath.row
-            let image = UIImage(named:"ArrowIconUp")
-            cell.expandButton.setImage(image, for: .normal)
+            cell.expandButton.setImage(UIImage(named:"ArrowIconUp"), for: .normal)
         } else {
-            // there is no cell selected anymore
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
-            let image = UIImage(named:"ArrowIcon")
-            cell.expandButton.setImage(image, for: .normal)
+            cell.expandButton.setImage(UIImage(named:"ArrowIcon"), for: .normal)
         }
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
-        
     }
     
     
