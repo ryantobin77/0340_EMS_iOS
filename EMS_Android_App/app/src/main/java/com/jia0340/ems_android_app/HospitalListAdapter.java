@@ -164,6 +164,7 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                         break;
                 }
                 holder.mDiversionView.setImageDrawable(currImage);
+                holder.mExpandedDiversionView.setImageDrawable(currImage);
 
                 // assign text for expandedView
                 String description = diversions.get(0);
