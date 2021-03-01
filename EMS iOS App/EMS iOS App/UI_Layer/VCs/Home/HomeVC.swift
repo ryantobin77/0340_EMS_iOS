@@ -51,7 +51,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.nedocsView.backgroundColor = hospital.nedocsScore.getNedocsColor()
         cell.nedocsLabel.text = hospital.nedocsScore.rawValue
         if (hospital.hasDiversion) {
-            cell.horStackView2.isHidden = false
+            cell.diversionsHolder.isHidden = false
             cell.expandedDiversionIconLabel.isHidden = false
 
             let currDiversionIcon: UIImage?
@@ -78,11 +78,19 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
                 cell.expandedDiversionIconLabel.text! += diversion + "\n"
             }
         } else {
-            cell.horStackView2.isHidden = true
-            cell.diversionIcon?.image = nil
-            cell.expandedDiversionIcon?.image = nil
-            cell.expandedDiversionIconLabel.text = ""
+            // hide diversion icon when no diversion
+            cell.diversionIcon?.isHidden = true
+            cell.diversionIconWidth.constant = 0
+            cell.diversionIconLeading.constant = 0
+            
+            // hide expanded info about diversion when no diversion
+            cell.diversionsHolder.isHidden = true
+            cell.expandedDiversionIcon?.isHidden = true
+            cell.expandedDiversionIconLabel.isHidden = true
+            cell.diversionsHolderHeight.constant = 0
+            
         }
+        
         if hospital.specialtyCenters.count > 0 {
             cell.hospitalTypeIcon2Label.text = hospital.specialtyCenters[0].rawValue
             cell.hospitalTypeIcon.image = hospital.specialtyCenters[0].getHospitalIcon()
