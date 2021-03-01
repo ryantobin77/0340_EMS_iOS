@@ -14,7 +14,8 @@
    viewBox="0 0 505.136 505.136"
    width="512"
    version="1.1"
-   sodipodi:docname="warning_6.svg">
+   sodipodi:docname="warning_6.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -24,9 +25,18 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
-     id="namedview34" />
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
+     id="namedview34"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:zoom="1.1582031"
+     inkscape:cx="256"
+     inkscape:cy="256"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Capa_1" />
   <metadata
      id="metadata1030">
     <rdf:RDF>
@@ -120,7 +130,7 @@
        style="font-style:normal;font-weight:normal;font-size:39.4637px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.986594" />
   </g>
   <ellipse
-     style="opacity:1;fill:#0065cc;fill-opacity:1;stroke:#0065cc;stroke-width:1.98899;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="opacity:1;fill:#d32f2f;fill-opacity:1;stroke:#d32f2f;stroke-width:1.98899;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path1593"
      cx="406.47662"
      cy="406.47662"
