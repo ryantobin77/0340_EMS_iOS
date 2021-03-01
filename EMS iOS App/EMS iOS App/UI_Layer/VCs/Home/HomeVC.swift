@@ -52,6 +52,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.nedocsView.layer.cornerRadius = 5.0
         cell.nedocsView.backgroundColor = hospital.nedocsScore.getNedocsColor()
         cell.nedocsLabel.text = hospital.nedocsScore.rawValue
+        if (hospital.nedocsScore == NedocsScore(rawValue: "Overcrowded")) {
+            cell.nedocsLabel.font = cell.nedocsLabel.font.withSize(11)
+        } else {
+            cell.nedocsLabel.font = cell.nedocsLabel.font.withSize(16)
+        }
         if (hospital.hasDiversion) {
             cell.diversionsHolder.isHidden = false
             cell.expandedDiversionIconLabel.isHidden = false
