@@ -66,7 +66,7 @@ class HospitalIH: NSObject {
                 if let type = HospitalType(rawValue: center) {
                     centers.append(type)
                 } else {
-                    centers.append(HospitalType(rawValue: "Adult Trauma Center - Level 1")!)
+                    continue
                 }
             }
             let address = street + ", " + city + ", " + state + " " + zip

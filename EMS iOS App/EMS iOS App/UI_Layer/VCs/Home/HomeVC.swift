@@ -94,7 +94,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         }
 
         if (hospital.specialtyCenters.count > 0) {
-            cell.hospitalTypeIcon2Label.text = hospital.specialtyCenters[0].rawValue
+            cell.hospitalTypeIcon2Label.text = hospital.specialtyCenters[0].getHospitalDisplayString()
             cell.hospitalTypeIcon.isHidden = false
             cell.hospitalTypeIcon2.isHidden = false
             cell.hospitalTypeIcon.image = hospital.specialtyCenters[0].getHospitalIcon()
