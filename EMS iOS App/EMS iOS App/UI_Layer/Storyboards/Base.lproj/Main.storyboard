@@ -38,15 +38,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="199" estimatedRowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-TW-JX4">
-                                <rect key="frame" x="20" y="88" width="414" height="808"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="264" estimatedRowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-TW-JX4">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hospitalCell" rowHeight="199" id="ayb-Ta-Od8" customClass="HomeTableViewCell" customModule="EMS_iOS_App" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="199"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="hospitalCell" rowHeight="264" id="ayb-Ta-Od8" customClass="HomeTableViewCell" customModule="EMS_iOS_App" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="264"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ayb-Ta-Od8" id="QA0-5G-Q9u">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="199"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="264"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90S-SX-gSq">
@@ -102,18 +102,32 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Htg-9b-VcT">
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WarningIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3aZ-Nw-Zpl">
+                                                    <rect key="frame" x="92" y="44" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" identifier="DiversionIconWidth" id="L2E-9i-riL"/>
+                                                        <constraint firstAttribute="height" constant="25" id="h8X-5R-Ibp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Htg-9b-VcT" userLabel="Hospital Type Icon 1">
                                                     <rect key="frame" x="127" y="44" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="P4p-Cm-t6D"/>
                                                         <constraint firstAttribute="height" constant="25" id="dKu-1t-syr"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WarningIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3aZ-Nw-Zpl">
-                                                    <rect key="frame" x="92" y="44" width="25" height="25"/>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="USX-ZZ-XJt" userLabel="Hospital Type Icon 2">
+                                                    <rect key="frame" x="162" y="44" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" identifier="DiversionIconWidth" id="L2E-9i-riL"/>
-                                                        <constraint firstAttribute="height" constant="25" id="h8X-5R-Ibp"/>
+                                                        <constraint firstAttribute="height" constant="25" id="POo-mk-wb7"/>
+                                                        <constraint firstAttribute="width" constant="25" id="mSn-yw-1u3"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="WPq-k4-tsT" userLabel="Hospital Type Icon 3">
+                                                    <rect key="frame" x="197" y="44" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="ItM-qk-F4S"/>
+                                                        <constraint firstAttribute="width" constant="25" id="a3N-1j-bX9"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbL-O0-31Z">
@@ -125,7 +139,7 @@
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wwS-6u-tur">
-                                                    <rect key="frame" x="2" y="91" width="410" height="104"/>
+                                                    <rect key="frame" x="2" y="91" width="410" height="50"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="JlF-ZX-ZK7">
                                                             <rect key="frame" x="0.0" y="0.0" width="410" height="20"/>
@@ -169,8 +183,8 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Vi-iBp">
-                                                            <rect key="frame" x="0.0" y="22" width="410" height="25"/>
+                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Vi-iBp">
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WarningIcon" translatesAutoresizingMaskIntoConstraints="NO" id="T3X-rN-0yH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -193,17 +207,53 @@
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" identifier="DiversionsHolderHeight" id="XQz-Ft-FeG"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-9q-Y3U">
-                                                            <rect key="frame" x="0.0" y="49" width="410" height="25"/>
+                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-9q-Y3U" userLabel="Hospital Type Holder 1">
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vry-cU-nno">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vry-cU-nno" userLabel="Expanded Hospital Type Icon 1">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="25" id="80d-bJ-GhP"/>
                                                                         <constraint firstAttribute="height" constant="25" id="FjJ-rl-nN9"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="oKE-nB-QnM">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="oKE-nB-QnM" userLabel="Hospital Type Label 1">
+                                                                    <rect key="frame" x="35" y="0.0" width="375" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-i1-ubc" userLabel="Hospital Type Holder 2">
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YmU-jf-vGg" userLabel="Expanded Hospital Type Icon 2">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="25" id="Fzl-xm-9AK"/>
+                                                                        <constraint firstAttribute="width" constant="25" id="XtS-L0-9UT"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6o8-jY-MHg" userLabel="Hospital Type Label 2">
+                                                                    <rect key="frame" x="35" y="0.0" width="375" height="25"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="trV-Ot-5bN" userLabel="Hospital Type Holder 3">
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ebw-vX-Wi2" userLabel="Expanded Hospital Type Icon 3">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="25" id="QDb-a8-nzK"/>
+                                                                        <constraint firstAttribute="height" constant="25" id="hUe-kL-NbQ"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="UlA-XX-5Bz" userLabel="Hospital Type Label 3">
                                                                     <rect key="frame" x="35" y="0.0" width="375" height="25"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                                     <nil key="textColor"/>
@@ -212,7 +262,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6d0-5r-NFr">
-                                                            <rect key="frame" x="0.0" y="76" width="410" height="13"/>
+                                                            <rect key="frame" x="0.0" y="22" width="410" height="13"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Orb-7z-h0T">
                                                                     <rect key="frame" x="0.0" y="0.0" width="410" height="13"/>
@@ -223,7 +273,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PAc-UA-QM0">
-                                                            <rect key="frame" x="0.0" y="91" width="410" height="13"/>
+                                                            <rect key="frame" x="0.0" y="37" width="410" height="13"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Q0w-yq-6Os">
                                                                     <rect key="frame" x="0.0" y="0.0" width="410" height="13"/>
@@ -234,9 +284,6 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Y5z-GI-Dwj"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -248,6 +295,8 @@
                                                 <constraint firstItem="Vby-89-TqH" firstAttribute="leading" secondItem="90S-SX-gSq" secondAttribute="trailing" constant="10" id="OHI-Nu-Uj6"/>
                                                 <constraint firstItem="90S-SX-gSq" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="top" constant="9" id="PmP-C8-zrw"/>
                                                 <constraint firstItem="90S-SX-gSq" firstAttribute="leading" secondItem="QA0-5G-Q9u" secondAttribute="leading" constant="10" id="Qw9-7k-S87"/>
+                                                <constraint firstItem="USX-ZZ-XJt" firstAttribute="top" secondItem="Vby-89-TqH" secondAttribute="bottom" constant="8" id="RCz-eO-D8o"/>
+                                                <constraint firstItem="WPq-k4-tsT" firstAttribute="leading" secondItem="USX-ZZ-XJt" secondAttribute="trailing" constant="10" id="RXO-DB-rtW"/>
                                                 <constraint firstItem="Xy6-1Y-HKV" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="topMargin" constant="15" id="ScX-fr-RPb"/>
                                                 <constraint firstAttribute="trailing" secondItem="vvY-Rz-OBQ" secondAttribute="trailing" id="Scn-ce-Bk2"/>
                                                 <constraint firstItem="Vby-89-TqH" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="topMargin" id="YwF-B4-WDT"/>
@@ -255,9 +304,11 @@
                                                 <constraint firstItem="lQh-OH-55M" firstAttribute="leading" secondItem="Vby-89-TqH" secondAttribute="trailing" constant="10" id="cAa-AR-R5F"/>
                                                 <constraint firstItem="lQh-OH-55M" firstAttribute="centerY" secondItem="Vby-89-TqH" secondAttribute="centerY" id="lzC-be-sMQ"/>
                                                 <constraint firstItem="3aZ-Nw-Zpl" firstAttribute="leading" secondItem="90S-SX-gSq" secondAttribute="trailing" constant="10" identifier="DiversionIconLeading" id="obB-C7-ycE"/>
+                                                <constraint firstItem="WPq-k4-tsT" firstAttribute="top" secondItem="Vby-89-TqH" secondAttribute="bottom" constant="8" id="pTr-iZ-Ad6"/>
                                                 <constraint firstItem="Htg-9b-VcT" firstAttribute="top" secondItem="Vby-89-TqH" secondAttribute="bottom" constant="8" id="uX0-rS-4lZ"/>
                                                 <constraint firstItem="vvY-Rz-OBQ" firstAttribute="top" secondItem="Xy6-1Y-HKV" secondAttribute="bottom" constant="7" id="vzY-OE-h8d"/>
                                                 <constraint firstAttribute="trailing" secondItem="wwS-6u-tur" secondAttribute="trailing" constant="2" id="y0L-sC-aez"/>
+                                                <constraint firstItem="USX-ZZ-XJt" firstAttribute="leading" secondItem="Htg-9b-VcT" secondAttribute="trailing" constant="10" id="yXZ-mc-Oyt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -272,15 +323,23 @@
                                             <outlet property="expandButton" destination="tbL-O0-31Z" id="Kfz-Zc-8UJ"/>
                                             <outlet property="expandedDiversionIcon" destination="T3X-rN-0yH" id="7kd-z3-pHQ"/>
                                             <outlet property="expandedDiversionIconLabel" destination="H1A-mz-z0v" id="UAu-5Q-Wq6"/>
+                                            <outlet property="expandedHospitalTypeIcon1" destination="vry-cU-nno" id="9C1-76-bzO"/>
+                                            <outlet property="expandedHospitalTypeIcon2" destination="YmU-jf-vGg" id="Cqn-rA-XO0"/>
+                                            <outlet property="expandedHospitalTypeIcon3" destination="ebw-vX-Wi2" id="XYc-Mb-Kpv"/>
                                             <outlet property="favoritePin" destination="lQh-OH-55M" id="nKB-Uc-Hxc"/>
                                             <outlet property="horStackView1" destination="JlF-ZX-ZK7" id="30b-wu-dr6"/>
-                                            <outlet property="horStackView3" destination="aPO-9q-Y3U" id="5t1-2I-xhe"/>
                                             <outlet property="horStackView4" destination="6d0-5r-NFr" id="1OF-Ld-VOg"/>
                                             <outlet property="horStackView5" destination="PAc-UA-QM0" id="2x9-GT-34c"/>
                                             <outlet property="hospitalName" destination="Vby-89-TqH" id="JNp-pN-iwe"/>
-                                            <outlet property="hospitalTypeIcon" destination="Htg-9b-VcT" id="eW1-bO-XSX"/>
-                                            <outlet property="hospitalTypeIcon2" destination="vry-cU-nno" id="V5c-t2-Jah"/>
-                                            <outlet property="hospitalTypeIcon2Label" destination="oKE-nB-QnM" id="f3S-GU-DHm"/>
+                                            <outlet property="hospitalTypeHolder1" destination="aPO-9q-Y3U" id="WJS-6U-jTD"/>
+                                            <outlet property="hospitalTypeHolder2" destination="ciJ-i1-ubc" id="ncC-tw-uJL"/>
+                                            <outlet property="hospitalTypeHolder3" destination="trV-Ot-5bN" id="LMG-Iq-AUf"/>
+                                            <outlet property="hospitalTypeIcon1" destination="Htg-9b-VcT" id="Rpo-lC-L3k"/>
+                                            <outlet property="hospitalTypeIcon2" destination="USX-ZZ-XJt" id="NTk-oN-wkk"/>
+                                            <outlet property="hospitalTypeIcon3" destination="WPq-k4-tsT" id="zgZ-Gb-U9E"/>
+                                            <outlet property="hospitalTypeLabel1" destination="oKE-nB-QnM" id="b9O-Uy-24p"/>
+                                            <outlet property="hospitalTypeLabel2" destination="6o8-jY-MHg" id="Obq-TD-sN3"/>
+                                            <outlet property="hospitalTypeLabel3" destination="UlA-XX-5Bz" id="rw3-yo-qt0"/>
                                             <outlet property="mapPinView" destination="Xy6-1Y-HKV" id="VTP-BI-Qih"/>
                                             <outlet property="nedocsLabel" destination="ghC-tC-3ji" id="m1H-co-EJL"/>
                                             <outlet property="nedocsView" destination="90S-SX-gSq" id="ggb-gg-WtR"/>
