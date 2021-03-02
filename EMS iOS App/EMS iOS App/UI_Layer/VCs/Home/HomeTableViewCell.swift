@@ -52,8 +52,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var horStackView4: UIStackView!
     @IBOutlet weak var favoritePin: UIButton!
     @IBOutlet weak var horStackView5: UIStackView!
-    
-    @IBOutlet var diversionsHolderHeight: NSLayoutConstraint!
     @IBOutlet var diversionIconWidth: NSLayoutConstraint!
     @IBOutlet var diversionIconLeading: NSLayoutConstraint!
 }

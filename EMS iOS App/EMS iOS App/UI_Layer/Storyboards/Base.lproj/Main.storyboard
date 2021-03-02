@@ -183,7 +183,7 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Vi-iBp">
+                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Vi-iBp">
                                                             <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WarningIcon" translatesAutoresizingMaskIntoConstraints="NO" id="T3X-rN-0yH">
@@ -194,18 +194,12 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1A-mz-z0v">
-                                                                    <rect key="frame" x="35" y="0.0" width="375" height="25"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="alF-qE-Zai"/>
-                                                                    </constraints>
+                                                                    <rect key="frame" x="35" y="0.0" width="375" height="14"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" identifier="DiversionsHolderHeight" id="XQz-Ft-FeG"/>
-                                                            </constraints>
                                                         </stackView>
                                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-9q-Y3U" userLabel="Hospital Type Holder 1">
                                                             <rect key="frame" x="0.0" y="21" width="410" height="25"/>
@@ -319,7 +313,6 @@
                                             <outlet property="diversionIconLeading" destination="obB-C7-ycE" id="5oY-kc-mxW"/>
                                             <outlet property="diversionIconWidth" destination="L2E-9i-riL" id="Spw-e6-2dx"/>
                                             <outlet property="diversionsHolder" destination="dLX-Vi-iBp" id="UXd-OG-Z4O"/>
-                                            <outlet property="diversionsHolderHeight" destination="XQz-Ft-FeG" id="xJS-w6-KSO"/>
                                             <outlet property="expandButton" destination="tbL-O0-31Z" id="Kfz-Zc-8UJ"/>
                                             <outlet property="expandedDiversionIcon" destination="T3X-rN-0yH" id="7kd-z3-pHQ"/>
                                             <outlet property="expandedDiversionIconLabel" destination="H1A-mz-z0v" id="UAu-5Q-Wq6"/>

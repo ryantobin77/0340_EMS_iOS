@@ -82,9 +82,14 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.diversionIcon?.image = currDiversionIcon
             cell.expandedDiversionIcon?.image = currDiversionIcon
             cell.expandedDiversionIconLabel.text = ""
-            for diversion in hospital.diversions {
-                cell.expandedDiversionIconLabel.text! += diversion + "\n"
+            for i in 0...(hospital.diversions.count - 1) {
+                if (i != hospital.diversions.count - 1) {
+                    cell.expandedDiversionIconLabel.text! += hospital.diversions[i] + "\n"
+                } else {
+                    cell.expandedDiversionIconLabel.text! += hospital.diversions[i]
+                }
             }
+            
         } else {
             // hide diversion icon when no diversion
             cell.diversionIcon?.isHidden = true
@@ -94,7 +99,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             // hide expanded info about diversion when no diversion
             cell.diversionsHolder.isHidden = true
             cell.expandedDiversionIconLabel.isHidden = true
-            cell.diversionsHolderHeight.constant = 0
         }
 
         if (hospital.specialtyCenters.count != 0) {
@@ -154,7 +158,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
             let hospital = self.hospitals[indexPath.row]
             if hospital.hasDiversion {
-                return CGFloat(152 + 28 * (hospital.specialtyCenters.count + hospital.diversions.count))
+                return CGFloat(177 + 28 * (hospital.specialtyCenters.count) + (6 * (hospital.diversions.count - 1)))
             } else {
                 return CGFloat(152 + 28 * hospital.specialtyCenters.count)
             }
