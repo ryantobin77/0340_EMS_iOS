@@ -58,7 +58,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.nedocsLabel.font = cell.nedocsLabel.font.withSize(16)
         }
         if (hospital.hasDiversion) {
+            // show diversion icon when diversion
             cell.diversionIcon?.isHidden = false
+            cell.diversionIconWidth.constant = 25
+            cell.diversionIconLeading.constant = 10
+            
+            // show expanded info about diversion when diversion
             cell.diversionsHolder.isHidden = false
             cell.expandedDiversionIconLabel.isHidden = false
 
@@ -100,6 +105,14 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             cell.diversionsHolder.isHidden = true
             cell.expandedDiversionIconLabel.isHidden = true
         }
+        
+        // default hide all hospital types
+        cell.hospitalTypeIcon1.isHidden = true
+        cell.hospitalTypeIcon2.isHidden = true
+        cell.hospitalTypeIcon3.isHidden = true
+        cell.hospitalTypeHolder1.isHidden = true
+        cell.hospitalTypeHolder2.isHidden = true
+        cell.hospitalTypeHolder3.isHidden = true
 
         if (hospital.specialtyCenters.count != 0) {
             for i in 0...(hospital.specialtyCenters.count - 1) {
@@ -129,10 +142,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
                 }
                 
                 if (currHospitalTypeIcon != nil && currExpandedHospitalTypeIcon != nil && currHospitalTypeLabel != nil) {
+                    // unhide hospital type icon
                     currHospitalTypeIcon?.isHidden = false
+                    
+                    // unhide expanded info about hospital type
                     currHospitalTypeHolder?.isHidden = false
-                    currExpandedHospitalTypeIcon?.isHidden = false
-                    currHospitalTypeLabel?.isHidden = false
                     
                     currHospitalTypeIcon?.image = hospital.specialtyCenters[i].getHospitalIcon()
                     currExpandedHospitalTypeIcon?.image = hospital.specialtyCenters[i].getHospitalIcon()
@@ -158,8 +172,10 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
             let hospital = self.hospitals[indexPath.row]
             if hospital.hasDiversion {
+                // calculate the height of the expanded cell based on the number f  diversions and hospital types
                 return CGFloat(177 + 28 * (hospital.specialtyCenters.count) + (6 * (hospital.diversions.count - 1)))
             } else {
+                // calculate the height of the expanded cell based on the number of hospital types
                 return CGFloat(152 + 28 * hospital.specialtyCenters.count)
             }
         }
