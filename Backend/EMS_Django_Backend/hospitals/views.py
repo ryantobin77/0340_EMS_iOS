@@ -3,9 +3,29 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from . import models
 
+import json
+from .models import Hospital, SpecialtyCenter, Diversion
+
 # Create your views here.
 def home(request):
     return HttpResponse('<h1>Welcome to the EMS Mobile Backend!</h1>')
+
+
+#currently just updates the data in the database whenever the server is launched
+#could be updated to be inside a method where requests to update the data can be made from the app
+Hospital.objects.all().delete()
+for line in open('../../scrapers/georgiarcc.json', 'r'):
+    hosp = json.loads(line)
+    obj = Hospital(name=hosp['Hospital'],street=hosp['Street'],city=hosp['City'],county=hosp['County'],state='GA',zip=hosp['Zip'],phone=hosp['Phone Number'],rch=hosp['RegCoord'],ems_region=hosp['EMSRegion'],nedocs_score=hosp['Nedocs'],last_updated=hosp['Updated'])
+    obj.save()
+    for spec in hosp['Specialty center']:
+        obj.specialty_center.add(spec)
+    for div in hosp['Status']:
+        try:
+            obj.diversions.add(div)
+        except:
+            Diversion.objects.create(type=div)
+            obj.diversions.add(div)
 
 
 def get_hospitals(request):
@@ -25,6 +45,7 @@ def get_hospitals(request):
             'name' : hospital.name,
             'street' : hospital.street,
             'city' : hospital.city,
+            'county' : hospital.county,
             'state' : hospital.state,
             'zip' : hospital.zip,
             'phone' : hospital.phone,
@@ -37,5 +58,4 @@ def get_hospitals(request):
 
         }
         hospitals_list.append(next)
-    json_dict = {'hospitals' : hospitals_list}
-    return JsonResponse(json_dict)
+    return JsonResponse(hospitals_list, safe=False)

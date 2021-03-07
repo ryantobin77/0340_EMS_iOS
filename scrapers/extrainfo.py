@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import pandas
 import requests
+import json
 
 regionurl1 = "https://georgiarcc.org/?county=&region="
 regionurl2 = "&regional_coordinating_hospital=&search_by_type=&search-by-hospital=&search="
@@ -16,7 +17,7 @@ for i in range(1,11):
     df = df.append(temp)
 
 df = df.reset_index()
-df = df.drop(columns=['index', 'County', 'Nedocs', 'Status', 'Updated'])
+df = df.drop(columns=['index', 'Nedocs', 'Status', 'Updated'])
 
 coordurl1 = "https://georgiarcc.org/?county=&region=&regional_coordinating_hospital="
 coordurl2 = "&search_by_type=&search-by-hospital=&search="
@@ -41,35 +42,45 @@ h_types = {'Adult Trauma Centers': ['Level I', 'Level II', 'Level III', 'Level I
          'Neonatal Center Designation': ['Level I Neonatal Center', 'Level II Neonatal Center', 'Level III Neonatal Center'],
          'Maternal Center Designation': ['Level I Maternal Center', 'Level II Maternal Center', 'Level III Maternal Center']}
 
+df['Specialty center'] = [[] for x in range(len(df))]
+
+centers = []
+
 for h_type in h_types:
     for spec in h_types[h_type]:
         page = requests.get(specialurl1 + str(h_type) + specialurl2 + str(spec) + specialurl3)
+        centers.append((str(h_type) + "-" + str(spec)))
         soup = BeautifulSoup(page.content, 'lxml')
         table = soup.find_all('table')[0]
         dfs = pandas.read_html(str(table))
         temp = pandas.DataFrame(dfs[0])
+        # for h in temp['Hospital']:
+        #     df.loc[df['Hospital'] == h, (str(h_type) + "-" + str(spec))] = True
         for h in temp['Hospital']:
-            df.loc[df['Hospital'] == h, (str(h_type) + "-" + str(spec))] = True
-        if (str(h_type) + "-" + str(spec)) in df.columns:
-            df[(str(h_type) + "-" + str(spec))] = df[(str(h_type) + "-" + str(spec))].fillna(value=False)
+            df.loc[df['Hospital'] == h, "Specialty center"] += [(str(h_type) + "-" + str(spec))]
+        # if (str(h_type) + "-" + str(spec)) in df.columns:
+        #     df[(str(h_type) + "-" + str(spec))] = df[(str(h_type) + "-" + str(spec))].fillna(value=False)
 
-# max_spec = 0
-# max_name = "Test"
-# for row in df[1:]:
-#     curr = 0
-#     for col in df.columns[3:]:
-#         curr = curr + 1 if df[row, col] else curr
-#     if curr > max_spec:
-#         max_spec = curr
-#         max_name = df[row, "Hospital"]
-
-# print("max specialties: " + str(max_spec))
-# print("name: " + str(max_name))
-
-# names = pandas.DataFrame(df['Hospital'])
-# names.to_csv("HospitalInfo.csv")
-
-
+new_centers = {'specialty_centers': centers}
+with open('specialty_centers.json', 'w') as outfile:
+    json.dump(new_centers, outfile)
 
 df.to_json("extra.json", orient='records', lines=True)
 #print(df)
+
+p_a = pandas.read_csv("HospitalInfo.csv")
+p_a = p_a.drop(p_a.columns[0],axis=1)
+p_a['Street'], p_a['City'], p_a['StateZip'] = p_a['Address'].str.split(',', 2).str
+p_a['Zip'] = p_a['StateZip'].str[3:]
+p_a = p_a.drop(columns=['Address', 'StateZip'])
+p_a = p_a.drop(72)
+p_a.to_json("HospitalStaticInfo.json", orient='records', lines=True)
+
+p_a['Phone Number'] = p_a['Phone Number'].str.replace(" ", "")
+p_a['Phone Number'] = p_a['Phone Number'].str.replace("(", "")
+p_a['Phone Number'] = p_a['Phone Number'].str.replace(")", "")
+p_a['Phone Number'] = p_a['Phone Number'].str.replace("-", "")
+df = df.drop(72)
+
+total = pandas.merge(df, p_a, on='Hospital',how='inner')
+total.to_json("Hospital.json", orient='records', lines=True)
