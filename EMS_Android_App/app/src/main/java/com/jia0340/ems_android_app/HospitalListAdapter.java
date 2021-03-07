@@ -73,18 +73,16 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         Hospital hospital = mHospitalList.get(position);
 
         holder.mHospitalName.setText(hospital.getName());
-        holder.mDistanceLabel.setText(mContext.getString(R.string.distance, hospital.getDistance()));
+        holder.mDistanceLabel.setText(mContext.getString(R.string.distance, hospital.getmDistance()));
         holder.mPhoneNumber.setText(hospital.getPhoneNumber());
-        holder.mAddressView.setText(mContext.getString(R.string.address, hospital.getStreetAddress(),
-                                            hospital.getCity(), hospital.getState(), hospital.getZipCode()));
-        holder.mCountyRegionText.setText(mContext.getString(R.string.county_region, hospital.getCounty(),
-                                            hospital.getRegion()));
-        holder.mRegionalCoordinatingText.setText(mContext.getString(R.string.regional_coordinating_hospital,
-                                            hospital.getRegionalCoordinatingHospital()));
+        //TODO: will need to format addresses for newlines etc.
+        holder.mAddressView.setText(hospital.getAddress());
+        holder.mCountyRegionText.setText(hospital.getCounty() + " - " +hospital.getRegion());
+        holder.mRegionalCoordinatingText.setText(hospital.getRegionalCoordinatingHospital());
 
-        handleNedocsValues(holder, hospital.getNedocsScore());
+        handleNedocsValues(holder, hospital.getmNedocsScore());
 
-        handleDiversions(holder, hospital.getDiversions());
+        handleDiversions(holder, hospital.hasDiversions(), hospital.getDiversions());
 
         handleHospitalTypes(holder, hospital.getHospitalTypes());
 
@@ -103,68 +101,37 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         return mHospitalList.size();
     }
 
-    /**
-     * Handles the UI for the nedocs score
-     * Sets the text and background color based on enum value
-     * @param holder View for the specific hospital
-     * @param score Nedocs score for the hospital
-     */
     public void handleNedocsValues(ViewHolder holder, NedocsScore score) {
-
-        holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), score.getColor(), null));
-        holder.mNedocsLabel.setText(mContext.getString(score.getLabel()));
-
-        if (score.equals(NedocsScore.OVERCROWDED)) {
-            holder.mNedocsLabel.setTextSize(14);
-        } else {
-            holder.mNedocsLabel.setTextSize(16);
+        switch (score) {
+            case NORMAL:
+                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.normal, null));
+                holder.mNedocsLabel.setText(mContext.getString(R.string.normal));
+                break;
+            case BUSY:
+                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.busy, null));
+                holder.mNedocsLabel.setText(mContext.getString(R.string.busy));
+                break;
+            case OVERCROWDED:
+                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.overcrowded, null));
+                holder.mNedocsLabel.setText(mContext.getString(R.string.overcrowded));
+                holder.mNedocsLabel.setTextSize(12);
+                break;
+            case SEVERE:
+                holder.mNedocsView.setBackgroundColor(ResourcesCompat.getColor(mContext.getResources(), R.color.severe, null));
+                holder.mNedocsLabel.setText(mContext.getString(R.string.severe));
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + score);
         }
-
     }
 
-    /**
-     * Handles the UI for the diversions
-     * Displays the diversion icon if needed and adds a description to the expanded view
-     * @param holder View for the specific hospital
-     * @param diversions List of diversions for the hospital
-     */
-    public void handleDiversions(ViewHolder holder, ArrayList<String> diversions) {
+    public void handleDiversions(ViewHolder holder, boolean hasDiversions, ArrayList<String> diversions) {
 
-        if (diversions != null && diversions.size() > 0) {
-
-            if (diversions.size() == 1 && diversions.get(0).equals("Normal")) {
-                hideDiversions(holder);
-            } else {
+        if (hasDiversions) {
+            if (diversions != null && diversions.size() > 0) {
                 // set visibility of icon within collapsed/expanded views
                 holder.mDiversionView.setVisibility(View.VISIBLE);
                 holder.mExpandedDiversionView.setVisibility(View.VISIBLE);
-
-                Drawable currImage;
-                switch (diversions.size()) {
-                    case 1:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_1, null);
-                        break;
-                    case 2:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_2, null);
-                        break;
-                    case 3:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_3, null);
-                        break;
-                    case 4:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_4, null);
-                        break;
-                    case 5:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_5, null);
-                        break;
-                    case 6:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning_6, null);
-                        break;
-                    default:
-                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.warning, null);
-                        break;
-                }
-                holder.mDiversionView.setImageDrawable(currImage);
-                holder.mExpandedDiversionView.setImageDrawable(currImage);
 
                 // assign text for expandedView
                 String description = diversions.get(0);
@@ -178,22 +145,13 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                 holder.mDiversionDescription.setVisibility(View.VISIBLE);
             }
         } else {
-            hideDiversions(holder);
+            holder.mDiversionView.setVisibility(View.GONE);
+            holder.mExpandedDiversionView.setVisibility(View.GONE);
+            holder.mDiversionDescription.setVisibility(View.GONE);
         }
+
     }
 
-    public void hideDiversions(ViewHolder holder) {
-        holder.mDiversionView.setVisibility(View.GONE);
-        holder.mExpandedDiversionView.setVisibility(View.GONE);
-        holder.mDiversionDescription.setVisibility(View.GONE);
-    }
-
-    /**
-     * Displays icons and descriptions for hospital types
-     * Handles up to 3 hospital types
-     * @param holder View for the specific hospital
-     * @param hospitalTypes List of hospital types for a hospital
-     */
     public void handleHospitalTypes(ViewHolder holder, ArrayList<HospitalType> hospitalTypes) {
 
         holder.mHospitalTypeOneImage.setVisibility(View.GONE);
@@ -226,30 +184,34 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                         break;
                 }
 
-                if (currHospitalIcon != null && currTypeView != null) {
-                    currHospitalIcon.setVisibility(View.VISIBLE);
-                    currTypeView.setVisibility(View.VISIBLE);
+                currHospitalIcon.setVisibility(View.VISIBLE);
+                currTypeView.setVisibility(View.VISIBLE);
 
-                    HospitalType currHospitalType = hospitalTypes.get(i);
-                    Drawable currImage = ResourcesCompat.getDrawable(mContext.getResources(), currHospitalType.getImageId(), null);
-                    String currText = mContext.getString(currHospitalType.getStringId());
+                Drawable currImage = null;
+                String currText = "";
 
-                    currHospitalIcon.setImageDrawable(currImage);
-                    currTypeView.setCompoundDrawablesWithIntrinsicBounds(currImage, null, null, null);
-                    currTypeView.setText(currText);
+                switch (hospitalTypes.get(i)) {
+                    case ADULT_TRAUMA_CENTER:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.person, null);
+                        currText = mContext.getString(R.string.adult_trauma_center);
+                        break;
+                    case BRAIN:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.brain, null);
+                        currText = mContext.getString(R.string.brain);
+                        break;
+                    case HEART:
+                        currImage = ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.heart, null);
+                        currText = mContext.getString(R.string.heart);
+                        break;
                 }
+
+                currHospitalIcon.setImageDrawable(currImage);
+                currTypeView.setCompoundDrawablesWithIntrinsicBounds(currImage, null, null, null);
+                currTypeView.setText(currText);
             }
         }
     }
 
-    /**
-     * Updates the pin icon
-     * Displays the filled in pin if the hospital is a favorite
-     * Displays the pin outline if it is not
-     * Also instantiates an onClickListener for the pin that will update the UI
-     * @param holder View for the specific hospital
-     * @param hospital Object for current hospital
-     */
     public void handleFavoritePin(ViewHolder holder, Hospital hospital) {
         if (hospital.isFavorite())
             holder.mFavoriteView.setImageDrawable(ResourcesCompat.getDrawable(mContext.getResources(), R.drawable.filled_favorite_pin, null));
@@ -270,13 +232,6 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         });
     }
 
-    /**
-     * Updates the expand/collapse view by changing visibility of views
-     * Set onClickListeners for the expand/collapse buttons to handle UI changes
-     * @param holder
-     * @param hospital
-     * @param position
-     */
     public void handleExpandCollapse(ViewHolder holder, Hospital hospital, int position) {
         holder.mExpandButton.setVisibility(hospital.isExpanded() ? View.GONE : View.VISIBLE);
         holder.mExpandedHospitalCard.setVisibility(hospital.isExpanded() ? View.VISIBLE : View.GONE);
