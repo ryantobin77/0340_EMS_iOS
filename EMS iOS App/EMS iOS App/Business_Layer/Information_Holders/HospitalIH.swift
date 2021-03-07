@@ -66,13 +66,13 @@ class HospitalIH: NSObject {
                 if let type = HospitalType(rawValue: center) {
                     centers.append(type)
                 } else {
-                    centers.append(HospitalType(rawValue: "Adult Trauma Center - Level 1")!)
+                    continue
                 }
             }
             let address = street + ", " + city + ", " + state + " " + zip
             
             // Hardcoded: specialty centers, distance
-            let hosp = HospitalIH(name: name, nedocsScore: NedocsScore(rawValue: nedocsScore)!, specialtyCenters: centers, distance: 1.0, hasDiversion: (diversions.count > 0), diversions: diversions, address: address, phoneNumber: phone, regionNumber: emsRegion, county: county_val, rch: rch_value)
+            let hosp = HospitalIH(name: name, nedocsScore: NedocsScore(rawValue: nedocsScore)!, specialtyCenters: centers, distance: 1.0, hasDiversion: (diversions.count > 0 && diversions[0] != "Normal"), diversions: diversions, address: address, phoneNumber: phone, regionNumber: emsRegion, county: county_val, rch: rch_value)
             result.append(hosp)
         }
         return result
