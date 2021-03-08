@@ -74,8 +74,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
                 currDiversionIcon = UIImage(named: "WarningIcon")
             }
             cell.diversionIcon?.image = currDiversionIcon
-            cell.expandedDiversionIcon?.image = UIImage(named: "WarningIcon")
-            cell.expandedDiversionIconLabel.text = "Medical Diversion"
+            cell.expandedDiversionIcon?.image = currDiversionIcon
+            cell.expandedDiversionIconLabel.text = hospital.diversions[0]
         } else {
             cell.horStackView2.isHidden = true
             cell.diversionIcon?.image = nil
@@ -109,7 +109,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 200
+            return 220
         }
         return 90
     }
@@ -122,6 +122,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         guard let indexPath = tableView.indexPath(for: cell) else {
             return
         }
+        
+        cell.expandButton.isHidden = true
+        cell.minimizeButton.isHidden = false
         
         if self.selectedRowIndex != -1 {
             self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath)?.backgroundColor = UIColor.white
@@ -137,6 +140,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             self.selectedRowIndex = indexPath.row
             cell.expandButton.setImage(UIImage(named:"ArrowIconUp"), for: .normal)
         } else {
+            cell.minimizeButton.isHidden = true
+            cell.expandButton.isHidden = false
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
             cell.expandButton.setImage(UIImage(named:"ArrowIcon"), for: .normal)

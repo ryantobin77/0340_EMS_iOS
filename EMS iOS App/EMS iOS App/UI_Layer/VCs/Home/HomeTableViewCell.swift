@@ -30,8 +30,10 @@ class HomeTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         //label.leadingMargin(pixel: 10)
         //label.trailingMargin(pixel: 10)
-        return label
+     
+     return label
     }()*/
+    @IBOutlet weak var minimizeButton: UIButton!
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet var phoneNumber: UILabel!
     @IBOutlet weak var countyLabel: UILabel!
