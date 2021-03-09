@@ -22,6 +22,18 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         self.hospitals = Array<HospitalIH>()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        // initial load of data
+        buildHospitalList()
+        
+        // handles update of data in list every 60 seconds
+        _ = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
+            self.buildHospitalList()
+        }
+    }
+    
+    // helper method to build Hospital List from data
+    func buildHospitalList() {
         let tasker = HospitalsTasker()
         tasker.getAllHospitals(failure: {
             print("Failure")
