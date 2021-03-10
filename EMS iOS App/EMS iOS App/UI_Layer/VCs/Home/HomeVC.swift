@@ -52,11 +52,22 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         cell.nedocsView.layer.cornerRadius = 5.0
         cell.nedocsView.backgroundColor = hospital.nedocsScore.getNedocsColor()
         cell.nedocsLabel.text = hospital.nedocsScore.rawValue
+        if (hospital.nedocsScore == NedocsScore(rawValue: "Overcrowded")) {
+            cell.nedocsLabel.font = cell.nedocsLabel.font.withSize(11)
+        } else {
+            cell.nedocsLabel.font = cell.nedocsLabel.font.withSize(16)
+        }
         if (hospital.hasDiversion) {
-            cell.horStackView2.isHidden = false
+            // show diversion icon when diversion
+            cell.diversionIcon?.isHidden = false
+            cell.diversionIconWidth.constant = 25
+            cell.diversionIconLeading.constant = 10
+            
+            // show expanded info about diversion when diversion
+            cell.diversionsHolder.isHidden = false
             cell.expandedDiversionIconLabel.isHidden = false
 
-            let currDiversionIcon: UIImage!
+            let currDiversionIcon: UIImage?
             switch hospital.diversions.count {
             case 1:
                 currDiversionIcon = UIImage(named: "Warning1Icon")
@@ -75,23 +86,73 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             }
             cell.diversionIcon?.image = currDiversionIcon
             cell.expandedDiversionIcon?.image = currDiversionIcon
-            cell.expandedDiversionIconLabel.text = hospital.diversions[0]
-        } else {
-            cell.horStackView2.isHidden = true
-            cell.diversionIcon?.image = nil
-            cell.expandedDiversionIcon?.image = nil
             cell.expandedDiversionIconLabel.text = ""
-        }
-        if (hospital.specialtyCenters.count > 0) {
-            cell.hospitalTypeIcon2Label.text = hospital.specialtyCenters[0].rawValue
-            cell.hospitalTypeIcon.isHidden = false
-            cell.hospitalTypeIcon2.isHidden = false
-            cell.hospitalTypeIcon.image = hospital.specialtyCenters[0].getHospitalIcon()
-            cell.hospitalTypeIcon2.image = hospital.specialtyCenters[0].getHospitalIcon()
+            for i in 0...(hospital.diversions.count - 1) {
+                if (i != hospital.diversions.count - 1) {
+                    cell.expandedDiversionIconLabel.text! += hospital.diversions[i] + "\n"
+                } else {
+                    cell.expandedDiversionIconLabel.text! += hospital.diversions[i]
+                }
+            }
+            
         } else {
-            cell.hospitalTypeIcon2Label.text = ""
-            cell.hospitalTypeIcon.isHidden = true
-            cell.hospitalTypeIcon2.isHidden = true
+            // hide diversion icon when no diversion
+            cell.diversionIcon?.isHidden = true
+            cell.diversionIconWidth.constant = 0
+            cell.diversionIconLeading.constant = 0
+            
+            // hide expanded info about diversion when no diversion
+            cell.diversionsHolder.isHidden = true
+            cell.expandedDiversionIconLabel.isHidden = true
+        }
+        
+        // default hide all hospital types
+        cell.hospitalTypeIcon1.isHidden = true
+        cell.hospitalTypeIcon2.isHidden = true
+        cell.hospitalTypeIcon3.isHidden = true
+        cell.hospitalTypeHolder1.isHidden = true
+        cell.hospitalTypeHolder2.isHidden = true
+        cell.hospitalTypeHolder3.isHidden = true
+
+        if (hospital.specialtyCenters.count != 0) {
+            for i in 0...(hospital.specialtyCenters.count - 1) {
+                var currHospitalTypeIcon: UIImageView? = nil
+                var currHospitalTypeHolder: UIStackView? = nil
+                var currExpandedHospitalTypeIcon: UIImageView? = nil
+                var currHospitalTypeLabel: UILabel? = nil
+
+                switch i {
+                case 0:
+                    currHospitalTypeIcon = cell.hospitalTypeIcon1
+                    currHospitalTypeHolder = cell.hospitalTypeHolder1
+                    currExpandedHospitalTypeIcon = cell.expandedHospitalTypeIcon1
+                    currHospitalTypeLabel = cell.hospitalTypeLabel1
+                case 1:
+                    currHospitalTypeIcon = cell.hospitalTypeIcon2
+                    currHospitalTypeHolder = cell.hospitalTypeHolder2
+                    currExpandedHospitalTypeIcon = cell.expandedHospitalTypeIcon2
+                    currHospitalTypeLabel = cell.hospitalTypeLabel2
+                case 2:
+                    currHospitalTypeIcon = cell.hospitalTypeIcon3
+                    currHospitalTypeHolder = cell.hospitalTypeHolder3
+                    currExpandedHospitalTypeIcon = cell.expandedHospitalTypeIcon3
+                    currHospitalTypeLabel = cell.hospitalTypeLabel3
+                default:
+                    break
+                }
+                
+                if (currHospitalTypeIcon != nil && currExpandedHospitalTypeIcon != nil && currHospitalTypeLabel != nil) {
+                    // unhide hospital type icon
+                    currHospitalTypeIcon?.isHidden = false
+                    
+                    // unhide expanded info about hospital type
+                    currHospitalTypeHolder?.isHidden = false
+                    
+                    currHospitalTypeIcon?.image = hospital.specialtyCenters[i].getHospitalIcon()
+                    currExpandedHospitalTypeIcon?.image = hospital.specialtyCenters[i].getHospitalIcon()
+                    currHospitalTypeLabel?.text = hospital.specialtyCenters[i].getHospitalDisplayString()
+                }
+            }
         }
         
         cell.distanceLabel.text = "\(String(hospital.distance)) mi"
@@ -109,7 +170,14 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
-            return 220
+            let hospital = self.hospitals[indexPath.row]
+            if hospital.hasDiversion {
+                // calculate the height of the expanded cell based on the number of diversions and hospital types
+                return CGFloat(179 + 28 * (hospital.specialtyCenters.count) + (6 * (hospital.diversions.count - 1)))
+            } else {
+                // calculate the height of the expanded cell based on the number of hospital types
+                return CGFloat(154 + 28 * hospital.specialtyCenters.count)
+            }
         }
         return 90
     }
