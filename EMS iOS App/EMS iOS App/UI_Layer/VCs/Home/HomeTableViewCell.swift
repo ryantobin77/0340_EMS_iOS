@@ -13,6 +13,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet var nedocsView: UIView!
     @IBOutlet var nedocsLabel: UILabel!
     @IBOutlet var hospitalName: UILabel!
+    @IBOutlet var favoriteView: UIImageView!
     @IBOutlet var mapPinView: UIImageView!
     @IBOutlet var distanceLabel: UILabel!
     @IBOutlet var hospitalTypeIcon1: UIImageView!
@@ -35,10 +36,8 @@ class HomeTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         //label.leadingMargin(pixel: 10)
         //label.trailingMargin(pixel: 10)
-     
-     return label
+        return label
     }()*/
-    @IBOutlet weak var minimizeButton: UIButton!
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet var phoneNumber: UILabel!
     @IBOutlet weak var countyLabel: UILabel!

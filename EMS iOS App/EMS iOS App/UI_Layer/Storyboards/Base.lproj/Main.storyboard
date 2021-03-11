@@ -54,9 +54,6 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghC-tC-3ji">
                                                             <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="72" id="Ecz-0k-TPw"/>
-                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -68,14 +65,12 @@
                                                         <constraint firstItem="ghC-tC-3ji" firstAttribute="top" secondItem="90S-SX-gSq" secondAttribute="top" id="GlY-eG-uy3"/>
                                                         <constraint firstAttribute="width" constant="72" id="MMZ-aG-bp0"/>
                                                         <constraint firstItem="ghC-tC-3ji" firstAttribute="leading" secondItem="90S-SX-gSq" secondAttribute="leading" id="Thp-ZS-H3B"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ghC-tC-3ji" secondAttribute="trailing" id="kN4-dB-TpP"/>
                                                         <constraint firstAttribute="height" constant="72" id="mMV-cS-w9h"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vby-89-TqH">
                                                     <rect key="frame" x="92" y="11" width="44" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="w4K-cN-W5y"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -135,53 +130,50 @@
                                                         <constraint firstAttribute="width" constant="25" id="a3N-1j-bX9"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbL-O0-31Z">
-                                                    <rect key="frame" x="371.5" y="70" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="alR-34-7lj"/>
-                                                        <constraint firstAttribute="width" constant="20" id="poW-fd-xME"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbL-O0-31Z">
+                                                    <rect key="frame" x="371" y="68" width="21" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Expand Button" image="ArrowIcon"/>
                                                     <connections>
                                                         <action selector="expandButton:" destination="JLG-Vg-eHN" eventType="touchUpInside" id="Bgc-VP-6n9"/>
                                                     </connections>
                                                 </button>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wwS-6u-tur">
-                                                    <rect key="frame" x="2" y="91" width="410" height="55"/>
+                                                    <rect key="frame" x="2" y="91" width="410" height="50"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="JlF-ZX-ZK7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="410" height="25"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="JlF-ZX-ZK7">
+                                                            <rect key="frame" x="0.0" y="0.0" width="410" height="20"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ak0-9R-KQd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="202" height="25"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ak0-9R-KQd">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="195.5" height="20"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jS8-tw-GnI">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="25" id="EOA-Kl-EwF"/>
                                                                                 <constraint firstAttribute="height" constant="25" id="y4d-OV-87J"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yy-id-FlG">
-                                                                            <rect key="frame" x="35" y="5" width="167" height="15.5"/>
+                                                                            <rect key="frame" x="35" y="0.0" width="160.5" height="20"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Ep-wK-4I7">
-                                                                    <rect key="frame" x="209" y="0.0" width="201" height="20.5"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Ep-wK-4I7">
+                                                                    <rect key="frame" x="202.5" y="0.0" width="207.5" height="20"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddressIcon" translatesAutoresizingMaskIntoConstraints="NO" id="05T-Sy-aPA">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="17.5" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="99" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="25" id="Bf2-nJ-iu5"/>
                                                                                 <constraint firstAttribute="width" constant="25" id="RZN-Wp-47p"/>
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="DpC-V9-IQF">
-                                                                            <rect key="frame" x="27.5" y="2.5" width="173.5" height="15.5"/>
+                                                                            <rect key="frame" x="109" y="0.0" width="98.5" height="20"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                                             <nil key="textColor"/>
@@ -192,7 +184,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Vi-iBp">
-                                                            <rect key="frame" x="0.0" y="26" width="410" height="25"/>
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WarningIcon" translatesAutoresizingMaskIntoConstraints="NO" id="T3X-rN-0yH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -210,7 +202,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aPO-9q-Y3U" userLabel="Hospital Type Holder 1">
-                                                            <rect key="frame" x="0.0" y="26" width="410" height="25"/>
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="vry-cU-nno" userLabel="Expanded Hospital Type Icon 1">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -228,7 +220,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ciJ-i1-ubc" userLabel="Hospital Type Holder 2">
-                                                            <rect key="frame" x="0.0" y="26" width="410" height="25"/>
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YmU-jf-vGg" userLabel="Expanded Hospital Type Icon 2">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -246,7 +238,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="trV-Ot-5bN" userLabel="Hospital Type Holder 3">
-                                                            <rect key="frame" x="0.0" y="26" width="410" height="25"/>
+                                                            <rect key="frame" x="0.0" y="21" width="410" height="25"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BrainIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ebw-vX-Wi2" userLabel="Expanded Hospital Type Icon 3">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -264,7 +256,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6d0-5r-NFr">
-                                                            <rect key="frame" x="0.0" y="27" width="410" height="13"/>
+                                                            <rect key="frame" x="0.0" y="22" width="410" height="13"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Orb-7z-h0T">
                                                                     <rect key="frame" x="0.0" y="0.0" width="410" height="13"/>
@@ -275,7 +267,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PAc-UA-QM0">
-                                                            <rect key="frame" x="0.0" y="42" width="410" height="13"/>
+                                                            <rect key="frame" x="0.0" y="37" width="410" height="13"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Q0w-yq-6Os">
                                                                     <rect key="frame" x="0.0" y="0.0" width="410" height="13"/>
@@ -287,17 +279,6 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJd-dL-ZuY">
-                                                    <rect key="frame" x="374" y="189" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="7lP-PZ-XyH"/>
-                                                        <constraint firstAttribute="width" constant="20" id="Rfb-Tj-RYR"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Minimize Button" image="ArrowIconUp"/>
-                                                    <connections>
-                                                        <action selector="expandButton:" destination="JLG-Vg-eHN" eventType="touchUpInside" id="Ym6-G9-0tm"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Htg-9b-VcT" firstAttribute="leading" secondItem="3aZ-Nw-Zpl" secondAttribute="trailing" constant="10" id="6AW-u1-Q6U"/>
@@ -309,23 +290,19 @@
                                                 <constraint firstItem="90S-SX-gSq" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="top" constant="9" id="PmP-C8-zrw"/>
                                                 <constraint firstItem="90S-SX-gSq" firstAttribute="leading" secondItem="QA0-5G-Q9u" secondAttribute="leading" constant="10" id="Qw9-7k-S87"/>
                                                 <constraint firstItem="USX-ZZ-XJt" firstAttribute="top" secondItem="Vby-89-TqH" secondAttribute="bottom" constant="8" id="RCz-eO-D8o"/>
-                                                <constraint firstItem="USX-ZZ-XJt" firstAttribute="leading" secondItem="Htg-9b-VcT" secondAttribute="trailing" constant="10" id="RXO-DB-rtW"/>
+                                                <constraint firstItem="WPq-k4-tsT" firstAttribute="leading" secondItem="USX-ZZ-XJt" secondAttribute="trailing" constant="10" id="RXO-DB-rtW"/>
                                                 <constraint firstItem="Xy6-1Y-HKV" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="topMargin" constant="15" id="ScX-fr-RPb"/>
                                                 <constraint firstAttribute="trailing" secondItem="vvY-Rz-OBQ" secondAttribute="trailing" id="Scn-ce-Bk2"/>
                                                 <constraint firstItem="Vby-89-TqH" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="topMargin" id="YwF-B4-WDT"/>
                                                 <constraint firstItem="lQh-OH-55M" firstAttribute="top" secondItem="QA0-5G-Q9u" secondAttribute="top" constant="11" id="ZCP-rn-nfF"/>
-                                                <constraint firstItem="tbL-O0-31Z" firstAttribute="centerX" secondItem="Xy6-1Y-HKV" secondAttribute="centerX" id="boE-aa-hSh"/>
                                                 <constraint firstItem="lQh-OH-55M" firstAttribute="leading" secondItem="Vby-89-TqH" secondAttribute="trailing" constant="10" id="cAa-AR-R5F"/>
-                                                <constraint firstItem="JlF-ZX-ZK7" firstAttribute="top" secondItem="tbL-O0-31Z" secondAttribute="bottom" constant="1" id="kY0-ga-oWY"/>
-                                                <constraint firstItem="lJd-dL-ZuY" firstAttribute="centerX" secondItem="tbL-O0-31Z" secondAttribute="centerX" id="kz3-ih-lLV"/>
                                                 <constraint firstItem="lQh-OH-55M" firstAttribute="centerY" secondItem="Vby-89-TqH" secondAttribute="centerY" id="lzC-be-sMQ"/>
                                                 <constraint firstItem="3aZ-Nw-Zpl" firstAttribute="leading" secondItem="90S-SX-gSq" secondAttribute="trailing" constant="10" identifier="DiversionIconLeading" id="obB-C7-ycE"/>
                                                 <constraint firstItem="WPq-k4-tsT" firstAttribute="top" secondItem="Vby-89-TqH" secondAttribute="bottom" constant="8" id="pTr-iZ-Ad6"/>
-                                                <constraint firstItem="WPq-k4-tsT" firstAttribute="leading" secondItem="USX-ZZ-XJt" secondAttribute="trailing" constant="10" id="qtP-HY-fyB"/>
                                                 <constraint firstItem="Htg-9b-VcT" firstAttribute="top" secondItem="Vby-89-TqH" secondAttribute="bottom" constant="8" id="uX0-rS-4lZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="lJd-dL-ZuY" secondAttribute="bottom" constant="1" id="vFx-ZF-hN5"/>
                                                 <constraint firstItem="vvY-Rz-OBQ" firstAttribute="top" secondItem="Xy6-1Y-HKV" secondAttribute="bottom" constant="7" id="vzY-OE-h8d"/>
                                                 <constraint firstAttribute="trailing" secondItem="wwS-6u-tur" secondAttribute="trailing" constant="2" id="y0L-sC-aez"/>
+                                                <constraint firstItem="USX-ZZ-XJt" firstAttribute="leading" secondItem="Htg-9b-VcT" secondAttribute="trailing" constant="10" id="yXZ-mc-Oyt"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -357,13 +334,11 @@
                                             <outlet property="hospitalTypeLabel2" destination="6o8-jY-MHg" id="Obq-TD-sN3"/>
                                             <outlet property="hospitalTypeLabel3" destination="UlA-XX-5Bz" id="rw3-yo-qt0"/>
                                             <outlet property="mapPinView" destination="Xy6-1Y-HKV" id="VTP-BI-Qih"/>
-                                            <outlet property="minimizeButton" destination="lJd-dL-ZuY" id="LtX-KZ-3QB"/>
                                             <outlet property="nedocsLabel" destination="ghC-tC-3ji" id="m1H-co-EJL"/>
                                             <outlet property="nedocsView" destination="90S-SX-gSq" id="ggb-gg-WtR"/>
                                             <outlet property="phoneIcon" destination="jS8-tw-GnI" id="ly7-S7-QJF"/>
                                             <outlet property="phoneNumber" destination="7yy-id-FlG" id="BVc-7V-gZc"/>
                                             <outlet property="rchLabel" destination="Q0w-yq-6Os" id="Ru5-a8-GaM"/>
-                                            <outlet property="regionLabel" destination="Q0w-yq-6Os" id="Ruf-gz-LmR"/>
                                             <outlet property="vertStackView" destination="wwS-6u-tur" id="laN-jt-qTQ"/>
                                         </connections>
                                     </tableViewCell>
@@ -407,7 +382,6 @@
     <resources>
         <image name="AddressIcon" width="20" height="20"/>
         <image name="ArrowIcon" width="249" height="256"/>
-        <image name="ArrowIconUp" width="249" height="256"/>
         <image name="BrainIcon" width="512" height="512"/>
         <image name="FilterIcon" width="24" height="24"/>
         <image name="MapPin" width="32" height="32"/>
