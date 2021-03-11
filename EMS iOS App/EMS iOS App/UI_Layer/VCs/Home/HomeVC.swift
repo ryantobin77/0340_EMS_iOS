@@ -184,11 +184,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         if indexPath.row == selectedRowIndex && thereIsCellTapped {
             let hospital = self.hospitals[indexPath.row]
             if hospital.hasDiversion {
-                // calculate the height of the expanded cell based on the number f  diversions and hospital types
-                return CGFloat(177 + 28 * (hospital.specialtyCenters.count) + (6 * (hospital.diversions.count - 1)))
+                // calculate the height of the expanded cell based on the number of diversions and hospital types
+                return CGFloat(179 + 28 * (hospital.specialtyCenters.count) + (6 * (hospital.diversions.count - 1)))
             } else {
                 // calculate the height of the expanded cell based on the number of hospital types
-                return CGFloat(152 + 28 * hospital.specialtyCenters.count)
+                return CGFloat(154 + 28 * hospital.specialtyCenters.count)
             }
         }
         return 90
@@ -202,6 +202,9 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         guard let indexPath = tableView.indexPath(for: cell) else {
             return
         }
+        
+        cell.expandButton.isHidden = true
+        cell.minimizeButton.isHidden = false
         
         if self.selectedRowIndex != -1 {
             self.tableView.cellForRow(at: NSIndexPath(row: self.selectedRowIndex, section: 0) as IndexPath)?.backgroundColor = UIColor.white
@@ -217,6 +220,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             self.selectedRowIndex = indexPath.row
             cell.expandButton.setImage(UIImage(named:"ArrowIconUp"), for: .normal)
         } else {
+            cell.minimizeButton.isHidden = true
+            cell.expandButton.isHidden = false
             self.thereIsCellTapped = false
             self.selectedRowIndex = -1
             cell.expandButton.setImage(UIImage(named:"ArrowIcon"), for: .normal)
