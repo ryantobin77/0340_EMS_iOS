@@ -18,8 +18,10 @@ import com.jia0340.ems_android_app.models.Hospital;
 import com.jia0340.ems_android_app.models.HospitalType;
 import com.jia0340.ems_android_app.models.NedocsScore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Custom adapter used to bind individual items in the recyclerView
@@ -81,6 +83,8 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
                                             hospital.getRegion()));
         holder.mRegionalCoordinatingText.setText(mContext.getString(R.string.regional_coordinating_hospital,
                                             hospital.getRegionalCoordinatingHospital()));
+        SimpleDateFormat simpleFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss", Locale.US);
+        holder.mLastUpdatedText.setText(mContext.getString(R.string.last_updated, simpleFormat.format(hospital.getLastUpdated())));
 
         handleNedocsValues(holder, hospital.getNedocsScore());
 
@@ -322,6 +326,7 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
         public TextView mTypeThreeView;
         public TextView mCountyRegionText;
         public TextView mRegionalCoordinatingText;
+        public TextView mLastUpdatedText;
         public ImageButton mCollapseButton;
 
         public ViewHolder(@NonNull View itemView) {
@@ -348,6 +353,7 @@ class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewH
             mTypeThreeView = itemView.findViewById(R.id.hospitalType3Description);
             mCountyRegionText = itemView.findViewById(R.id.countyRegionView);
             mRegionalCoordinatingText = itemView.findViewById(R.id.regionalCoordinatingHospitalView);
+            mLastUpdatedText = itemView.findViewById(R.id.lastUpdated);
             mCollapseButton = itemView.findViewById(R.id.collapseButton);
         }
     }

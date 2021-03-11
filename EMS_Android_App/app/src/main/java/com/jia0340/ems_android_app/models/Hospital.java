@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Class representing a Hospital object.
@@ -25,7 +26,7 @@ public class Hospital {
     private String mCounty;
     private String mRegion;
     private String mRegionalCoordinatingHospital;
-    private String mLastUpdated;
+    private Date mLastUpdated;
 
     private double mDistance;
     private boolean mExpanded = false;
@@ -45,7 +46,7 @@ public class Hospital {
                     @JsonProperty("ems_region") String region,
                     @JsonProperty("rch") String regionalCoordinatingHospital,
                     @JsonProperty("diversions") ArrayList<String> diversions,
-                    @JsonProperty("last_updated") String lastUpdated) {
+                    @JsonProperty("last_updated") Date lastUpdated) {
 
         mName = name;
         mNedocsScore = nedocsScore;
@@ -108,6 +109,8 @@ public class Hospital {
     public String getRegionalCoordinatingHospital() {
         return mRegionalCoordinatingHospital;
     }
+
+    public Date getLastUpdated() { return mLastUpdated; }
 
     public ArrayList<HospitalType> getHospitalTypes() {
         return mHospitalTypes;
