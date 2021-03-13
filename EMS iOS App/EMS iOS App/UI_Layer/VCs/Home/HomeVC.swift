@@ -19,25 +19,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-        self.hospitals = Array<HospitalIH>()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        let tasker = HospitalsTasker()
-        tasker.getAllHospitals(failure: {
-            print("Failure")
-        }, success: { (hospitals) in
-            guard let hospitals = hospitals else {
-                self.hospitals = Array<HospitalIH>()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                return
-            }
-            self.hospitals = hospitals
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,7 +138,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             }
         }
         
-        cell.distanceLabel.text = "\(String(hospital.distance)) mi"
+        if (hospital.distance == -1.0) {
+            cell.distanceLabel.text = "-- mi"
+        } else {
+            cell.distanceLabel.text = "\(String(hospital.distance)) mi"
+        }
+        
         cell.address.attributedText = NSAttributedString(string: hospital.address, attributes:
             [.underlineStyle: NSUnderlineStyle.single.rawValue])
         cell.address.textColor = UIColor.blue
