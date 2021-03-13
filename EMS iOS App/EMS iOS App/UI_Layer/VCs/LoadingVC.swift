@@ -27,15 +27,14 @@ class LoadingVC: UIViewController {
             request.transportType = .automobile
             let directions = MKDirections(request: request)
             directions.calculate { response, error in
+                var distance = currentLocation.distance(from: hospitalLocation)
                 if let unwrappedResponse = response {
                     let route = unwrappedResponse.routes[0]
-                    hospital.distance = route.distance
-                } else {
-                    var distance = currentLocation.distance(from: hospitalLocation)
-                    distance = (distance / 1000) * 0.62137
-                    distance = Double(round(distance * 100) / 100)
-                    hospital.distance = distance
+                    distance = route.distance
                 }
+                distance = (distance / 1000) * 0.62137
+                distance = Double(round(distance * 100) / 100)
+                hospital.distance = distance
                 count += 1
                 if count == self.hospitals.count {
                     DispatchQueue.main.async {
