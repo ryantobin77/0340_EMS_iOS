@@ -89,4 +89,49 @@ extension HospitalType {
         }
         return image
     }
+    
+    func getHospitalDisplayString() -> String {
+        var label: String!
+        switch self {
+        case .adultTraumaCenterLevelI:
+            label = "Adult Trauma Center - Level 1"
+        case .adultTraumaCenterLevelII:
+            label = "Adult Trauma Center - Level 2"
+        case .adultTraumaCenterLevelIII:
+            label = "Adult Trauma Center - Level 3"
+        case .adultTraumaCenterLevelIV:
+            label = "Adult Trauma Center - Level 4"
+        case .pediatricTraumaCenterLevelI:
+            label = "Pediatric Trauma Center - Level 1"
+        case .pediatricTraumaCenterLevelII:
+            label = "Pediatric Trauma Center - Level 2"
+        case .comprehensiveStrokeCenter:
+            label = "Comprehensive Stroke Center"
+        case .thrombectomyStrokeCenter:
+            label = "Thrombectomy Stroke Center"
+        case .primaryStrokeCenter:
+            label = "Primary Stroke Center"
+        case .remoteStrokeCenter:
+            label = "Remote Treatment Stroke Center"
+        case .emergencyCardiacCenterLevelI:
+            label = "Emergency Cardiac Care Center - Level 1"
+        case .emergencyCardiacCenterLevelII:
+            label = "Emergency Cardiac Care Center - Level 2"
+        case .emergencyCardiacCenterLevelIII:
+            label = "Emergency Cardiac Care Center - Level 3"
+        case .neonatalCenterLevelI:
+            label = "Neonatal Center - Level 1"
+        case .neonatalCenterLevelII:
+            label = "Neonatal Center - Level 2"
+        case .neonatalCenterLevelIII:
+            label = "Neonatal Center - Level 3"
+        case .maternalCenterLevelI:
+            label = "Maternal Center - Level 1"
+        case .maternalCenterLevelII:
+            label = "Maternal Center - Level 2"
+        case .maternalCenterLevelIII:
+            label = "Maternal Center - Level 3"
+        }
+        return label
+    }
 }
