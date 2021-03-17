@@ -22,6 +22,17 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         self.hospitals = Array<HospitalIH>()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        // initial load of data
+        buildHospitalList()
+        
+        // swipe to refresh data
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(buildHospitalList), for: .valueChanged)
+    }
+
+    // helper method to build Hospital List from data
+    @objc func buildHospitalList() {
         let tasker = HospitalsTasker()
         tasker.getAllHospitals(failure: {
             print("Failure")
@@ -36,6 +47,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
             self.hospitals = hospitals
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+            }
+            
+            // Dismiss the refresh control
+            DispatchQueue.main.async {
+                self.tableView.refreshControl?.endRefreshing()
             }
         })
     }
