@@ -1,7 +1,5 @@
 package com.jia0340.ems_android_app.models;
 
-import android.os.Parcelable;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

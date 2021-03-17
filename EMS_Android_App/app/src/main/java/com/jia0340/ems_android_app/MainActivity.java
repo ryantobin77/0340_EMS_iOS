@@ -1,5 +1,6 @@
 package com.jia0340.ems_android_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -8,30 +9,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.jia0340.ems_android_app.models.Hospital;
-import com.jia0340.ems_android_app.network.DataService;
-import com.jia0340.ems_android_app.network.DistanceService;
-import com.jia0340.ems_android_app.network.RetrofitClientInstance;
+import com.jia0340.ems_android_app.network.DatabaseService;
+import com.jia0340.ems_android_app.network.RetrofitClientDatabaseAPI;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Hospital> mHospitalList;
     private HospitalListAdapter mHospitalAdapter;
     private Toolbar mToolbar;
-    private FusedLocationProviderClient mFusedLocationClient;
-    private Location mCurrentLocation;
-    private boolean mGettingDistance;
+    private BroadcastReceiver mDistanceReceiver;
+
+    private DistanceController mDistanceController;
+    private boolean mPermissionsGranted = false;
 
     /**
      * Create method for application
@@ -72,19 +66,23 @@ public class MainActivity extends AppCompatActivity {
         // Setting toolbar as the ActionBar with setSupportActionBar() call
         setSupportActionBar(mToolbar);
 
-        getHospitalData();
+        registerDistanceReceiver();
 
-        //TODO: need to prompt user to grant location access
+        checkPermissions();
+
+        getHospitalData();
     }
 
-//    @Override
-//    protected void onDestroy() {
-//
-//        super.onDestroy();
-//
-//        // stopping the service
-//        stopService(new Intent( this, DistanceService.class ) );
-//    }
+    @Override
+    protected void onDestroy() {
+
+        if (mDistanceReceiver != null) {
+            unregisterReceiver(mDistanceReceiver);
+            mDistanceReceiver = null;
+        }
+
+        super.onDestroy();
+    }
 
     /**
      * Instantiates the menu at the top of the screen
@@ -128,15 +126,15 @@ public class MainActivity extends AppCompatActivity {
     public void getHospitalData() {
 
         /*Create handle for the RetrofitInstance interface*/
-        DataService service = RetrofitClientInstance.getRetrofitInstance().create(DataService.class);
+        DatabaseService service = RetrofitClientDatabaseAPI.getRetrofitInstance().create(DatabaseService.class);
         Call<List<Hospital>> call = service.getHospitals();
         call.enqueue(new Callback<List<Hospital>>() {
             @Override
             public void onResponse(Call<List<Hospital>> call, Response<List<Hospital>> response) {
                 // Save the returned list
                 mHospitalList = (ArrayList<Hospital>) response.body();
-                // Now we can setup the recyclerView
-                instantiateRecyclerView();
+                // Now we can finish setting up the app
+                finishInstantiation();
             }
 
             @Override
@@ -151,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Set up the recyclerView and adapter
+     * Finish instantiating objects
      */
-    private void instantiateRecyclerView() {
+    private void finishInstantiation() {
 
         RecyclerView hospitalRecyclerView = findViewById(R.id.hospital_list);
 
@@ -164,84 +162,110 @@ public class MainActivity extends AppCompatActivity {
         hospitalRecyclerView.setAdapter(mHospitalAdapter);
         hospitalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        new Thread(new Runnable() {
-            public void run() {
-                getCurrentLocation();
-            }
-        }).start();
-
-//        // starting the service
-//        startService(new Intent( this, DistanceService.class ) );
+        if (mPermissionsGranted) {
+            instantiateDistanceController();
+        }
     }
 
-    private void getCurrentLocation() {
-        if (mFusedLocationClient == null) {
-            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        }
+    public void checkPermissions() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            mFusedLocationClient.getLastLocation()
-                    .addOnSuccessListener((Activity) getApplicationContext(), new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            Log.d("DistanceService: ", "Successfully got location");
-                            // Got last known location. In some rare situations this can be null.
-                            if (location != null && !location.equals(mCurrentLocation)) {
-                                mCurrentLocation = location;
-                                mGettingDistance = true;
-                                calculateDistances();
-                            }
-                        }
-                    });
+            // Requesting the permission
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
+                    1);
         } else {
-            Log.d("Main Activity", "Permissions were not granted!");
-            //TODO: location permissions not granted, what do we want to do?
+            mPermissionsGranted = true;
         }
     }
 
-    //TODO: need to do this in another thread/service
-    private void calculateDistances() {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        for (int i = 0; i < mHospitalList.size(); i++) {
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("MainActivity: ", "First Permission Granted");
 
-            Hospital hospital = mHospitalList.get(i);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                    // Requesting the permission
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                            2);
+                } else {
+                    mPermissionsGranted = true;
+                }
 
-            float[] distance = new float[3];
+            }
+        } else if (requestCode == 2) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("MainActivity: ", "Second Permission Granted");
 
-            Location.distanceBetween(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude(), hospital.getLatitude(), hospital.getLongitude(), distance);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
+                    // Requesting the permission
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            1);
+                } else {
+                    mPermissionsGranted = true;
+                }
 
-            //TODO: there might be an issue here with distance[0] not having a value??
-            hospital.setDistance(convertToMiles(distance[0]));
+            }
+        }
+    }
+
+    private void instantiateDistanceController() {
+
+        List<String> names = new ArrayList<>();
+        List<Double> latitudes = new ArrayList<>();
+        List<Double> longitudes = new ArrayList<>();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            names = mHospitalList.stream().map(Hospital::getName).collect(Collectors.toList());
+            latitudes = mHospitalList.stream().map(Hospital::getLatitude).collect(Collectors.toList());
+            longitudes = mHospitalList.stream().map(Hospital::getLongitude).collect(Collectors.toList());
+        } else {
+            for (Hospital hospital : mHospitalList) {
+                names.add(hospital.getName());
+                latitudes.add(hospital.getLatitude());
+                longitudes.add(hospital.getLongitude());
+            }
         }
 
-        mGettingDistance = false;
-        mHospitalAdapter.notifyDataSetChanged();
+        mDistanceController = new DistanceController(names, latitudes, longitudes, this);
+
+        new Thread(this::requestDistances).start();
     }
 
-    private String convertToMiles(float distanceInMeters) {
-
-        DecimalFormat df = new DecimalFormat("0.00");
-
-        return df.format(distanceInMeters * 0.000621371);
-
+    private void requestDistances() {
+        if (mDistanceController != null) {
+            mDistanceController.checkForNewLocation(this);
+        }
     }
 
+    private void updateDistances() {
+        if (mDistanceController != null) {
 
-//    // starting the service
-//    List<Double> latitudes = null;
-//    List<Double> longitudes = null;
-//
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-//        latitudes = mHospitalList.stream().map(Hospital::getLatitude).collect(Collectors.toList());
-//        longitudes = mHospitalList.stream().map(Hospital::getLongitude).collect(Collectors.toList());
-//    } else {
-//        for (Hospital hospital : mHospitalList) {
-//            latitudes.add(hospital.getLatitude());
-//            longitudes.add(hospital.getLongitude());
-//        }
-//    }
-//    Intent intent = new Intent(getBaseContext(), DistanceService.class);
-//        intent.putExtra("HOSPITAL_LAT", (Parcelable) latitudes);
-//        intent.putExtra("HOSPITAL_LONG", (Parcelable) longitudes);
-//    startService(new Intent( this, DistanceService.class ) );
+            for (Hospital hospital : mHospitalList) {
+                hospital.setDistance(mDistanceController.getDistanceToHospital(hospital.getName()));
+            }
+
+            mHospitalAdapter.notifyDataSetChanged();
+
+        }
+    }
+
+    private void registerDistanceReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("DISTANCE_COMPLETE");
+
+        mDistanceReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                updateDistances();
+            }
+        };
+        registerReceiver(mDistanceReceiver, filter);
+    }
 }
