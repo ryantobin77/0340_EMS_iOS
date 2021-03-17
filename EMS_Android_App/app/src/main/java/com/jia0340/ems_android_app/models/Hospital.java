@@ -27,6 +27,8 @@ public class Hospital {
     private String mRegion;
     private String mRegionalCoordinatingHospital;
     private Date mLastUpdated;
+    private double mLatitude;
+    private double mLongitude;
 
     private double mDistance;
     private boolean mExpanded = false;
@@ -46,7 +48,9 @@ public class Hospital {
                     @JsonProperty("ems_region") String region,
                     @JsonProperty("rch") String regionalCoordinatingHospital,
                     @JsonProperty("diversions") ArrayList<String> diversions,
-                    @JsonProperty("last_updated") Date lastUpdated) {
+                    @JsonProperty("last_updated") Date lastUpdated,
+                    @JsonProperty("lat") double latitude,
+                    @JsonProperty("long") double longitude) {
 
         mName = name;
         mNedocsScore = nedocsScore;
@@ -61,6 +65,8 @@ public class Hospital {
         mRegionalCoordinatingHospital = regionalCoordinatingHospital;
         mDiversions = diversions;
         mLastUpdated = lastUpdated;
+        mLatitude = latitude;
+        mLongitude = longitude;
 
         mDistance = 1.11;
 
