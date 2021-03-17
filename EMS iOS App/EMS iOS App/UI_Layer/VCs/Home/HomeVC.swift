@@ -25,11 +25,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGe
         
         // initial load of data
         buildHospitalList()
-        
-        // handles update of data in list every 60 seconds
-        _ = Timer.scheduledTimer(withTimeInterval: 60, repeats: true) { timer in
-            self.buildHospitalList()
-        }
     }
     
     // helper method to build Hospital List from data
